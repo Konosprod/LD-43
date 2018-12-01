@@ -45,6 +45,60 @@ public class MobDetection : MonoBehaviour
         return target;
     }
 
+    public GameObject GetTargetWithLowestHealth()
+    {
+        GameObject target = null;
+
+        float minHp = Mathf.Infinity;
+
+        foreach (GameObject mob in mobsInRange)
+        {
+            if (mob != null)
+            {
+                Mob m = mob.GetComponent<Mob>();
+                if (m.canDealDamage)
+                {
+                    float hp = m.hp;
+
+                    if (hp < minHp)
+                    {
+                        minHp = hp;
+                        target = mob;
+                    }
+                }
+            }
+        }
+
+        return target;
+    }
+
+    public GameObject GetTargetWithHighestHealth()
+    {
+        GameObject target = null;
+
+        float maxHp = 0f;
+
+        foreach (GameObject mob in mobsInRange)
+        {
+            if (mob != null)
+            {
+                Mob m = mob.GetComponent<Mob>();
+                if (m.canDealDamage)
+                {
+                    float hp = m.hp;
+
+                    if (hp > maxHp)
+                    {
+                        maxHp = hp;
+                        target = mob;
+                    }
+                }
+            }
+        }
+
+        return target;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == GameManager._instance.mobLayer)
