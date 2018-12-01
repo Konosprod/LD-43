@@ -17,7 +17,8 @@ public class Mob : MonoBehaviour
     [HideInInspector]
     public bool canDealDamage = true;
 
-    private float hp = 20f;
+    [HideInInspector]
+    public float hp = 20f;
 
     // Debuffs
     private NavMeshAgent navMeshAgent;
