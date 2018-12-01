@@ -362,6 +362,7 @@ MonoBehaviour:
   speed: 2
   healthBar: {fileID: 114435284766779746}
   canDealDamage: 1
+  hp: 20
 --- !u!136 &136165364248190984
 CapsuleCollider:
   m_ObjectHideFlags: 1
