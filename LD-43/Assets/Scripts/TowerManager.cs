@@ -11,7 +11,7 @@ public class TowerManager : MonoBehaviour
     public GameObject towerShopPanel;
 
     private int layerTowerSpot;
-    private List<GameObject> towers = new List<GameObject>();
+    public List<GameObject> towers = new List<GameObject>();
     public GameObject selectedSpot;
 
     void Awake()

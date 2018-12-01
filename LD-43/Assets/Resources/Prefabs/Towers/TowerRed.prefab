@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23629372444382088}
   - component: {fileID: 65866557963585474}
   - component: {fileID: 114141382155319058}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TowerRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,3 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 30
+  range: 3
+  isPreviewMode: 1
+  previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
+    type: 2}

@@ -89,7 +89,9 @@ public class GameManager : MonoBehaviour
     {
         Vector3 position = TowerManager._instance.selectedSpot.transform.position;
         position += new Vector3(0f, 0.275f, 0f);
-        Instantiate(towerPref, position, Quaternion.identity);
+        GameObject newTower = Instantiate(towerPref, position, Quaternion.identity);
+        newTower.GetComponent<Tower>().isPreviewMode = false;
+        TowerManager._instance.towers.Add(newTower);
         SpendMoney(tower.price);
 
         TowerManager._instance.towerShopPanel.SetActive(false);
