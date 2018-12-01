@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxHp: 20
+  maxHp: 75
   speed: 2
   healthBar: {fileID: 114435284766779746}
   canDealDamage: 1

@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     // Internal game logic
     private int villagerCount = 50;
     private int wave = 1;
-    private int money = 100;
+    private int money = 500;
+    private const float pauseTime = 30f;
+    private float currentPauseTime = 10f;
+    private bool isPlaying = false; // false = pause time between waves, true = wave
 
     void Awake()
     {
@@ -52,12 +55,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if(!isPlaying)
+        {
+            currentPauseTime -= Time.deltaTime;
+            if(currentPauseTime <= 0f)
+            {
+                // Start wave
+                currentPauseTime = pauseTime;
+                isPlaying = true;
+            }
+        }
+        else
+        {
+
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.S))
         {
             GameObject newMob = Instantiate(mobPrefab, start.transform.position, Quaternion.identity);
             NavMeshAgent agent = newMob.GetComponent<NavMeshAgent>();
             agent.SetDestination(goal.transform.position);
-        }
+        }*/
     }
 
 

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4101974836140538}
   - component: {fileID: 114169254934448118}
+  - component: {fileID: 114061418503057062}
   m_Layer: 0
   m_Name: ArrowTower
   m_TagString: Untagged
@@ -113,6 +114,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914258739888776}
   m_Mesh: {fileID: 4300000, guid: a47a7c1b7571afc47b2b00912f4b8e69, type: 3}
+--- !u!114 &114061418503057062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767315906620974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de9881bdf26a6b408144c4c876d80a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowPrefab: {fileID: 1709332353973336, guid: 727e093e9d8ae34489f2ca857b71f9de,
+    type: 2}
 --- !u!114 &114169254934448118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,9 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 30
-  range: 3
-  damage: 5
-  fireTime: 0.5
+  range: 6
+  damage: 8
+  fireTime: 0.25
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937133379686898}
   - component: {fileID: 114559285496524078}
+  - component: {fileID: 114468141177589790}
   m_Layer: 0
   m_Name: CanonTower
   m_TagString: Untagged
@@ -186,6 +187,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260371958875420}
   m_Mesh: {fileID: 4300000, guid: 4f915d005a544614fbbc61f5ac788c52, type: 3}
+--- !u!114 &114468141177589790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040641758854490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e978c9d8782000e4ca60683db69d65ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canonballPrefab: {fileID: 1303091294867988, guid: 619d860cf2daa5f419b436e9a4ca8a5a,
+    type: 2}
+  canon: {fileID: 1914333206187354}
 --- !u!114 &114559285496524078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c9f4b477dedd244970f2fce2986515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 30
-  range: 3
-  damage: 5
-  fireTime: 0.5
+  price: 100
+  range: 8
+  damage: 50
+  fireTime: 1.5
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}
