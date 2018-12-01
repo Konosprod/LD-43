@@ -15,7 +15,14 @@ public class MobWave : MonoBehaviour {
     {
         Dictionary<GameObject, List<Mob>> waveInfo = new Dictionary<GameObject, List<Mob>>();
 
+        foreach(GameObject spawner in activeSpawners)
+        {
+            waveInfo.Add(spawner, new List<Mob>());
+        }
+
         int points = basePoints + (wave * 10 * (int)Mathf.Ceil(Mathf.Log(wave * 10)));
+
+        Debug.Log("points : " + points);
 
         while (points > 0)
         {

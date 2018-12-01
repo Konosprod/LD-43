@@ -64,6 +64,7 @@ public class Mob : MonoBehaviour
         {
             hp = 0f;
             canDealDamage = false;
+            GameManager._instance.IAmAMobAndIDied(gameObject);
             Destroy(this.gameObject);
         }
 

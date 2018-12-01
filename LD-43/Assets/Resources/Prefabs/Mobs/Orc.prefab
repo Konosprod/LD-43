@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4562992979558488}
   - component: {fileID: 195362175102145632}
+  - component: {fileID: 54993381046585978}
   - component: {fileID: 136545037865424770}
   - component: {fileID: 114414078260748362}
-  - component: {fileID: 54993381046585978}
   m_Layer: 11
   m_Name: Orc
   m_TagString: Untagged
@@ -142,10 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc5cf823085a1643a41663bdb7670c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCost: 1
+  minWave: 1
+  mobPrefab: {fileID: 1943095604472958}
   damage: 1
-  hp: 50
+  maxHp: 20
   speed: 1.2
+  healthBar: {fileID: 0}
   canDealDamage: 1
+  hp: 50
 --- !u!136 &136545037865424770
 CapsuleCollider:
   m_ObjectHideFlags: 1
