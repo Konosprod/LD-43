@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
     [HideInInspector]
     public int goalLayer;
+    [HideInInspector]
+    public int mobLayer;
 
     [Header("GameLogic")]
     public GameObject start;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         goalLayer = LayerMask.NameToLayer("Goal");
+        mobLayer = LayerMask.NameToLayer("Mob");
 
         UpdateVillagerText();
         UpdateWaveText();
@@ -53,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject newMob = Instantiate(mobPrefab, start.transform.position, Quaternion.identity);
             NavMeshAgent agent = newMob.GetComponent<NavMeshAgent>();
-            agent.destination = goal.transform.position;
+            agent.SetDestination(goal.transform.position);
         }
     }
 

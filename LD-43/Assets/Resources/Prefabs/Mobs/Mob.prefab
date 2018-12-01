@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 195188440615451954}
   - component: {fileID: 114293279670714402}
   - component: {fileID: 54464598024631638}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  hp: 20
+  speed: 2
+  canDealDamage: 1
 --- !u!136 &136522750446248596
 CapsuleCollider:
   m_ObjectHideFlags: 1
