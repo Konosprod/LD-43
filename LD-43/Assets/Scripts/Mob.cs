@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Mob : MonoBehaviour
 {
     [Header("Stats")]
     public int damage = 1;
-    public float hp = 20f;
+    public float maxHp = 20f;
     public float speed = 2f;
+
+    [Header("UI")]
+    public Image healthBar;
 
     [HideInInspector]
     public bool canDealDamage = true;
+
+    private float hp = 20f;
 
     // Debuffs
     private NavMeshAgent navMeshAgent;
@@ -19,9 +25,12 @@ public class Mob : MonoBehaviour
     private float slowValue = 0.7f;
     private float slowTime = 0.0f;
 
+
+
     // Use this for initialization
     void Start()
     {
+        hp = maxHp;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -53,6 +62,13 @@ public class Mob : MonoBehaviour
             canDealDamage = false;
             Destroy(this.gameObject);
         }
+
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBar.fillAmount = hp / maxHp;
     }
 
     public void ApplySlow(float value, float duration)
