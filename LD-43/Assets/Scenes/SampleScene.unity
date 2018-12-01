@@ -2729,7 +2729,7 @@ MonoBehaviour:
   mobLayer: 0
   start: {fileID: 412408006}
   goal: {fileID: 1396582085}
-  mobPrefab: {fileID: 1777890979305096, guid: d7c8726b7a8a4d5418596066d733fd03, type: 2}
+  mobPrefab: {fileID: 1945020624800350, guid: 8464b047a70538c4cb131d2d7bcbf005, type: 2}
   waveText: {fileID: 996948254}
   villagerText: {fileID: 823109557}
   moneyText: {fileID: 1305404361}
