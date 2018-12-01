@@ -142,12 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc5cf823085a1643a41663bdb7670c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCost: 1
+  spawnCost: 2
   minWave: 1
   mobPrefab: {fileID: 1946495239958462}
-  damage: 1
-  maxHp: 20
-  speed: 2
+  damage: 25
+  maxHp: 160
+  speed: 2.5
   healthBar: {fileID: 0}
   canDealDamage: 1
   hp: 20
