@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class Mob : MonoBehaviour
 {
     [Header("Stats")]
+    public int spawnCost = 1;
+    public int minWave = 1;
+    public GameObject mobPrefab;
     public int damage = 1;
     public float maxHp = 20f;
     public float speed = 2f;
@@ -61,6 +64,7 @@ public class Mob : MonoBehaviour
         {
             hp = 0f;
             canDealDamage = false;
+            GameManager._instance.IAmAMobAndIDied(gameObject);
             Destroy(this.gameObject);
         }
 

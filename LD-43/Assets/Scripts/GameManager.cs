@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public int mobLayer;
 
     [Header("GameLogic")]
-    public GameObject start;
     public GameObject goal;
-    public GameObject mobPrefab;
+    public List<GameObject> spawners;
+    public MobWave mobWave;
 
     [Header("UI")]
     public Text waveText;
@@ -28,7 +28,16 @@ public class GameManager : MonoBehaviour
     // Internal game logic
     private int villagerCount = 50;
     private int wave = 1;
-    private int money = 100;
+    private int money = 500;
+    private const float pauseTime = 30f;
+    private float currentPauseTime = 10f;
+    private bool isPlaying = false; // false = pause time between waves, true = wave
+    private Dictionary<GameObject, List<Mob>> currentWave;
+    private List<GameObject> currentWaveMobs = new List<GameObject>();
+    private const float spawnDelay = 0.5f;
+    private float currentSpawnDelay;
+
+
 
     void Awake()
     {
@@ -41,6 +50,11 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Add a first random spawner
+        mobWave.activeSpawners.Add(spawners[Random.Range(0, spawners.Count)]);
+
+        currentSpawnDelay = spawnDelay;
+
         goalLayer = LayerMask.NameToLayer("Goal");
         mobLayer = LayerMask.NameToLayer("Mob");
 
@@ -52,12 +66,96 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (!isPlaying)
         {
-            GameObject newMob = Instantiate(mobPrefab, start.transform.position, Quaternion.identity);
-            NavMeshAgent agent = newMob.GetComponent<NavMeshAgent>();
-            agent.SetDestination(goal.transform.position);
+            currentPauseTime -= Time.deltaTime;
+            if (currentPauseTime <= 0f)
+            {
+                // Start wave
+                currentPauseTime = pauseTime;
+                isPlaying = true;
+                currentWave = mobWave.GenerateWave(wave);
+            }
         }
+        else
+        {
+            if (IsWaveDone())
+            {
+                isPlaying = false;
+            }
+            else
+            {
+                if(!IsSpawnDone())
+                {
+                    currentSpawnDelay -= Time.deltaTime;
+                    if (currentSpawnDelay < 0f)
+                    {
+                        foreach (GameObject spawner in currentWave.Keys)
+                        {
+                            if (currentWave[spawner].Count > 0)
+                            {
+                                Mob m = currentWave[spawner][0];
+                                GameObject newMob = Instantiate(m.mobPrefab, spawner.transform.position, spawner.transform.rotation);
+                                currentWave[spawner].RemoveAt(0);
+                                currentWaveMobs.Add(newMob);
+
+                                NavMeshAgent agent = newMob.GetComponent<NavMeshAgent>();
+                                agent.SetDestination(goal.transform.position);
+                            }
+                            else
+                            {
+                                currentWave.Remove(spawner);
+                            }
+                        }
+
+                        currentSpawnDelay = spawnDelay;
+                    }
+                }
+            }
+        }
+    }
+
+
+    private bool IsSpawnDone()
+    {
+        bool res = true;
+
+        foreach (GameObject spawner in currentWave.Keys)
+        {
+            if (currentWave[spawner].Count > 0)
+            {
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    private bool IsWaveDone()
+    {
+        bool res = true;
+
+        if (currentWaveMobs.Count == 0)
+        {
+            foreach (GameObject spawner in currentWave.Keys)
+            {
+                if (currentWave[spawner].Count > 0)
+                {
+                    res = false;
+                    break;
+                }
+            }
+        }
+        else
+            res = false;
+
+        return res;
+    }
+
+    public void IAmAMobAndIDied(GameObject mob)
+    {
+        currentWaveMobs.Remove(mob);
     }
 
 
@@ -81,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     private void SpendMoney(int amount)
     {
-        if(CanAfford(amount))
+        if (CanAfford(amount))
         {
             money -= amount;
             UpdateMoneyText();

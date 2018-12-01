@@ -87,10 +87,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992841337713584}
-  - component: {fileID: 114738015320141166}
   - component: {fileID: 195010652679884774}
-  - component: {fileID: 136165364248190984}
   - component: {fileID: 54144521222479648}
+  - component: {fileID: 136165364248190984}
+  - component: {fileID: 114738015320141166}
   m_Layer: 11
   m_Name: Ninja
   m_TagString: Untagged
@@ -357,8 +357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc5cf823085a1643a41663bdb7670c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCost: 1
+  minWave: 1
+  mobPrefab: {fileID: 1796408504805022}
   damage: 1
-  maxHp: 20
+  maxHp: 75
   speed: 2
   healthBar: {fileID: 114435284766779746}
   canDealDamage: 1

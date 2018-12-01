@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4693309307879232}
+  - component: {fileID: 114655882809279766}
   m_Layer: 0
   m_Name: CanonProj
   m_TagString: Untagged
@@ -65,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 1425377329529860}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0158, y: 0.0357, z: 0}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4693309307879232}
   m_RootOrder: 0
@@ -112,3 +113,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425377329529860}
   m_Mesh: {fileID: 4300000, guid: b159b2cef6e8bf2459c7288b4153fbc0, type: 3}
+--- !u!114 &114655882809279766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303091294867988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dece1c41b48a86e4e9ad369fa5ff1506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  speed: 13
+  target: {fileID: 0}
+  explosive: 0
+  radius: 2
+  explosionObject: {fileID: 1473331138035722, guid: c96175f190391c744a54fb7a6dd09349,
+    type: 2}
