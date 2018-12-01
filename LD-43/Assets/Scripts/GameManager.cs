@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void BuyTower(GameObject towerPref, Tower tower)
     {
         Vector3 position = TowerManager._instance.selectedSpot.transform.position;
-        position += new Vector3(0f, 0.275f, 0f);
+        position += new Vector3(0f, 0.025f, 0f);
         GameObject newTower = Instantiate(towerPref, position, Quaternion.identity);
         newTower.GetComponent<Tower>().isPreviewMode = false;
         TowerManager._instance.towers.Add(newTower);

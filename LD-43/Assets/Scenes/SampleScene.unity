@@ -455,7 +455,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefabs:
-  - {fileID: 1505060449311870, guid: b55ce1c11f33fe247b13b1790b3fcbee, type: 2}
+  - {fileID: 1767315906620974, guid: fa83a2e769bd1c148b7ac7cda3ec7512, type: 2}
+  - {fileID: 1963547306831880, guid: fbf3487d6f6794447b28c39688ef7f7f, type: 2}
+  - {fileID: 1040641758854490, guid: 5b6044a1c8c4ca049a7041f81864f6b3, type: 2}
+  - {fileID: 1473476771211118, guid: 4eae9f6ed5a6cf2478f402abd028e494, type: 2}
   buyTowerButtonPrefab: {fileID: 1688035818694676, guid: f5ffd69d4192df843bfc35218ae3ddc1,
     type: 2}
 --- !u!1 &291070446

@@ -49,14 +49,14 @@ public class BuyTowerButton : MonoBehaviour
         if(towerPreview == null)
         {
             Vector3 position = TowerManager._instance.selectedSpot.transform.position;
-            position += new Vector3(0f, 0.275f, 0f);
+            position += new Vector3(0f, 0.025f, 0f);
             towerPreview = Instantiate(towerPrefab, position, Quaternion.identity);
         }
         else if(!towerPreview.activeSelf)
         {
             towerPreview.SetActive(true);
             Vector3 position = TowerManager._instance.selectedSpot.transform.position;
-            position += new Vector3(0f, 0.275f, 0f);
+            position += new Vector3(0f, 0.025f, 0f);
             towerPreview.transform.position = position;
         }
     }
