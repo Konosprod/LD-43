@@ -47,7 +47,7 @@ public class TowerManager : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
         {
             selectedSpot = null;
             towerShopPanel.SetActive(false);
