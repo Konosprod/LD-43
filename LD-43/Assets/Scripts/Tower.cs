@@ -28,7 +28,7 @@ public class Tower : MonoBehaviour
         if (previewCircleInst == null)
         {
             Vector3 position = transform.position;
-            position += new Vector3(0f, -0.25f, 0f);
+            position += new Vector3(0f, 0f, 0f);
             previewCircleInst = Instantiate(previewCirclePrefab, position, Quaternion.identity);
             previewCircleInst.transform.localScale += new Vector3(range - 1f, 0f, range - 1f);
             previewCircleInst.transform.parent = transform;
