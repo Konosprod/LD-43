@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23629372444382088}
   - component: {fileID: 65866557963585474}
   - component: {fileID: 114141382155319058}
+  - component: {fileID: 114111150379385382}
   m_Layer: 14
   m_Name: TowerRed
   m_TagString: Untagged
@@ -97,6 +98,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114111150379385382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1505060449311870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a367f6ca6e1f54409d7fade38edafe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowValue: 0.7
 --- !u!114 &114141382155319058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 30
   range: 3
+  damage: 5
+  fireTime: 0.5
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}

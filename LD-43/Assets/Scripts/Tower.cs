@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-
     [Header("Stats")]
     public int price = 30;
     public float range = 3f;
+    public float damage = 5f;
+    public float fireTime = 0.5f; // In seconds
 
     [Header("Preview")]
     public bool isPreviewMode = true;
     public GameObject previewCirclePrefab;
     private GameObject previewCircleInst;
+    private MeshRenderer previewCircleMeshRend;
 
     // Use this for initialization
     void Start()
@@ -23,25 +25,19 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPreviewMode) // Show the range of the tower
+        if (previewCircleInst == null)
         {
-            if (previewCircleInst == null)
-            {
-                Vector3 position = transform.position;
-                position += new Vector3(0f, -0.25f, 0f);
-                previewCircleInst = Instantiate(previewCirclePrefab, position, Quaternion.identity);
-                previewCircleInst.transform.localScale += new Vector3(range - 1f, 0f, range - 1f);
-                previewCircleInst.transform.parent = transform;
-            }
-            else if (!previewCircleInst.activeSelf)
-            {
-                previewCircleInst.SetActive(true);
-            }
+            Vector3 position = transform.position;
+            position += new Vector3(0f, -0.25f, 0f);
+            previewCircleInst = Instantiate(previewCirclePrefab, position, Quaternion.identity);
+            previewCircleInst.transform.localScale += new Vector3(range - 1f, 0f, range - 1f);
+            previewCircleInst.transform.parent = transform;
+
+            previewCircleMeshRend = previewCircleInst.GetComponent<MeshRenderer>();
         }
         else
         {
-            if (previewCircleInst != null && previewCircleInst.activeSelf)
-                previewCircleInst.SetActive(false);
+            previewCircleMeshRend.enabled = isPreviewMode;
         }
     }
 }
