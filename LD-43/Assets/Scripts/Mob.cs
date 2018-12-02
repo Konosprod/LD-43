@@ -17,6 +17,8 @@ public class Mob : MonoBehaviour
     [Header("UI")]
     public Image healthBar;
 
+    public GameObject childMesh;
+
     [HideInInspector]
     public bool canDealDamage = true;
 
