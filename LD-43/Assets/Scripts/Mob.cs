@@ -19,6 +19,11 @@ public class Mob : MonoBehaviour
 
     public GameObject childMesh;
 
+    private float animSpeed = 15f;
+    private float animShakeAmount = 1.5f;
+    private float randFactorStart = 0f;
+    private float randFactorSpeed = 0.5f;
+
     [HideInInspector]
     public bool canDealDamage = true;
 
@@ -38,6 +43,9 @@ public class Mob : MonoBehaviour
     {
         hp = maxHp;
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        randFactorStart = Random.Range(-1f, 1f);
+        randFactorSpeed = Random.Range(0.5f, 1f);
     }
 
     // Update is called once per frame
@@ -57,6 +65,11 @@ public class Mob : MonoBehaviour
             navMeshAgent.speed = speed;
         else
             navMeshAgent.speed = speed * slowValue;
+
+
+        float x = Mathf.Sin(randFactorStart + Time.time * animSpeed * randFactorSpeed) * animShakeAmount;
+        childMesh.transform.localPosition = new Vector3(x, 0f, 0f);
+        childMesh.transform.localEulerAngles = new Vector3(0f, 0f, -x * 3f);
     }
 
     public void TakeDamage(float damage)
