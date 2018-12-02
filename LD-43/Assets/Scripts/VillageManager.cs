@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class VillageManager : MonoBehaviour {
 
+    [Header("Game Logic")]
     public int maxVillagers = 30;
     public float radiusSpawn = 3f;
+    public float villagerPerWave = 15f;
+    public float spawnRate = 10f;
     public List<GameObject> listPrefab;
     public List<Villager> villagerList = new List<Villager>();
     private GameManager gm;
