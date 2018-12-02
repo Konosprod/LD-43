@@ -215,10 +215,27 @@ public class GameManager : MonoBehaviour
         position += new Vector3(0f, 0.025f, 0f);
         GameObject newTower = Instantiate(towerPref, position, Quaternion.identity);
         newTower.GetComponent<Tower>().isPreviewMode = false;
-        TowerManager._instance.towers.Add(newTower);
+        TowerManager._instance.AddUsedTowerSpot(newTower);
         SpendMoney(tower.price);
 
         TowerManager._instance.towerShopPanel.SetActive(false);
+    }
+
+    public void UpgradeSelectedTower()
+    {
+        SpendMoney(TowerManager._instance.selectedTowerTower.GetUpgradeCost());
+        TowerManager._instance.selectedTowerTower.level++;
+
+        TowerManager._instance.DisableUpgradeTowerPanel();
+    }
+
+    public void SellSelectedTower()
+    {
+        money += TowerManager._instance.selectedTowerTower.GetSellValue();
+        UpdateMoneyText();
+        TowerManager._instance.DeleteSelectedTower();
+
+        TowerManager._instance.DisableUpgradeTowerPanel();
     }
 
     private void UpdateTimeText()

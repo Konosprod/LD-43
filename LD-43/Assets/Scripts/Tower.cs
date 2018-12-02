@@ -9,17 +9,37 @@ public class Tower : MonoBehaviour
     public float range = 3f;
     public float damage = 5f;
     public float fireTime = 0.5f; // In seconds
+    public int level = 1;
 
     [Header("Preview")]
     public bool isPreviewMode = true;
     public GameObject previewCirclePrefab;
     private GameObject previewCircleInst;
     private MeshRenderer previewCircleMeshRend;
+    [HideInInspector]
+    public bool isSelectedMode = false;
 
     // Use this for initialization
     void Start()
     {
 
+    }
+
+    public int GetUpgradeCost()
+    {
+        return price / 2 * (int)Mathf.Ceil(Mathf.Pow(1.5f, level-1));
+    }
+
+    public int GetSellValue()
+    {
+        int value = price / 2;
+
+        for(int i=1; i<level; i++)
+        {
+            value += price / 4 * (int)Mathf.Ceil(Mathf.Pow(1.5f, i - 1));
+        }
+
+        return value;
     }
 
     // Update is called once per frame
@@ -37,7 +57,7 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            previewCircleMeshRend.enabled = isPreviewMode;
+            previewCircleMeshRend.enabled = isPreviewMode || isSelectedMode;
         }
     }
 }
