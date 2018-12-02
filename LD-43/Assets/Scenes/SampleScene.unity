@@ -16557,8 +16557,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerShopPanel: {fileID: 269217152}
-  towers: []
+  upgradeTowerPanel: {fileID: 0}
   selectedSpot: {fileID: 0}
+  selectedTower: {fileID: 0}
+  selectedTowerTower: {fileID: 0}
 --- !u!114 &1776448916
 MonoBehaviour:
   m_ObjectHideFlags: 0

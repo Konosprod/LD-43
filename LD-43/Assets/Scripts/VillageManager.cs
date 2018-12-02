@@ -42,7 +42,9 @@ public class VillageManager : MonoBehaviour {
                 originPoint.z += Random.Range(-radius, radius);
 
                 int draw = Random.Range(0, listPrefab.Count);
-                Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
+                GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
+
+                villager.GetComponent<Villager>().valueVillagers = (int)Mathf.Pow(10, numberPower);
             }
 
             amount -= nbVillager * (int)Mathf.Pow(10, numberPower);
