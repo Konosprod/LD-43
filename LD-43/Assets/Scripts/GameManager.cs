@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     // Internal game logic
     public int villagerCount = 450;
     private int wave = 1;
-    private int money = 5000;
+    private int money = 400;
     public int food = 10;
     private const float pauseTime = 30f;
     private float currentPauseTime = 10f;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         mobWave.activeSpawners.Add(spawners[randSpawn]);
 
         // Hide inactive spawners
-        foreach(GameObject spawn in spawners)
+        foreach (GameObject spawn in spawners)
         {
             if (spawn != spawners[randSpawn])
                 spawn.SetActive(false);
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlaying)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentPauseTime -= pauseTime; // Skip pause
             }
@@ -111,8 +111,8 @@ public class GameManager : MonoBehaviour
             {
                 if (isPerfectWave)
                     villagerCount += villageManager.villagerPerPerfectWave;
-                else
-                    villagerCount += villageManager.villagerPerWave;
+
+                villagerCount += villageManager.villagerPerWave;
 
                 wave++;
                 isPlaying = false;
@@ -121,9 +121,9 @@ public class GameManager : MonoBehaviour
                 if (wave % 5 == 0 && wave <= 20)
                 {
                     // Add a spawner to the available spawners
-                    foreach(GameObject spawner in spawners)
+                    foreach (GameObject spawner in spawners)
                     {
-                        if(!mobWave.activeSpawners.Contains(spawner))
+                        if (!mobWave.activeSpawners.Contains(spawner))
                         {
                             mobWave.activeSpawners.Add(spawner);
                             spawner.SetActive(true);
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if(!IsSpawnDone())
+                if (!IsSpawnDone())
                 {
                     currentSpawnDelay -= Time.deltaTime;
                     if (currentSpawnDelay < 0f)
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
                             }
                         }
 
-                        if(removeSpawner != null)
+                        if (removeSpawner != null)
                         {
                             currentWave.Remove(removeSpawner);
                         }
@@ -248,6 +248,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void EarnMoney(int amount)
+    {
+        money += amount;
+        UpdateMoneyText();
+    }
+
     public void BuyTower(GameObject towerPref, Tower tower)
     {
         Vector3 position = TowerManager._instance.selectedSpot.transform.position;
@@ -314,8 +320,8 @@ public class GameManager : MonoBehaviour
 
     public void SellSelectedTower()
     {
-        money += TowerManager._instance.selectedTowerTower.GetSellValue();
-        UpdateMoneyText();
+        EarnMoney(TowerManager._instance.selectedTowerTower.GetSellValue());
+
         TowerManager._instance.DeleteSelectedTower();
 
         TowerManager._instance.CheckTowerBuffs();

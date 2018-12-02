@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class VillageManager : MonoBehaviour {
+public class VillageManager : MonoBehaviour
+{
 
     [Header("Game Logic")]
     public int maxVillagers = 30;
@@ -12,9 +13,15 @@ public class VillageManager : MonoBehaviour {
 
 
     //Value managed/used by the village
-    public int villagerPerWave = 15;
-    public int villagerPerPerfectWave = 25;
-    public int villagerPerTime = 10;
+    public int baseVillagerPerWave = 15;
+    public int baseVillagerPerPerfectWave = 25;
+    public int baseVillagerPerTime = 10;
+    [HideInInspector]
+    public int villagerPerWave;
+    [HideInInspector]
+    public int villagerPerPerfectWave;
+    [HideInInspector]
+    public int villagerPerTime;
     public float spawnRate = 10f;
     public int pricePw = 30;
     public int pricePpw = 50;
@@ -47,8 +54,9 @@ public class VillageManager : MonoBehaviour {
 
     private float villagerTime;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         villagerTime = spawnRate;
 
@@ -67,18 +75,22 @@ public class VillageManager : MonoBehaviour {
             villagerList.Add(villager.GetComponent<Villager>());
         }
 
+        villagerPerWave = baseVillagerPerWave;
+        villagerPerTime = baseVillagerPerTime;
+        villagerPerPerfectWave = baseVillagerPerPerfectWave;
+
         upgradeRateButton.onClick.AddListener(UpgradeRate);
         upgradePerWaveButton.onClick.AddListener(UpgradePw);
         upgradePerPerfectWaveButton.onClick.AddListener(UpgradePpw);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         villagerTime -= Time.deltaTime;
 
         //Spawn villager per time
-        if(villagerTime <= 0)
+        if (villagerTime <= 0)
         {
             gm.villagerCount += villagerPerTime;
             gm.UpdateVillagerText();
@@ -114,7 +126,7 @@ public class VillageManager : MonoBehaviour {
         int amount = gm.villagerCount;
 
 
-        while(amount > 0)
+        while (amount > 0)
         {
             int numberPower = (int)Mathf.Floor(Mathf.Log10(amount));
             int nbVillager = amount / (int)Mathf.Pow(10, numberPower);
@@ -134,8 +146,11 @@ public class VillageManager : MonoBehaviour {
 
     public void SacrificeVillager()
     {
-        gm.villagerCount -= selectedVillager.GetComponent<Villager>().valueVillagers;
+        int value = selectedVillager.GetComponent<Villager>().valueVillagers;
+        gm.villagerCount -= value;
         gm.UpdateVillagerText();
+
+        gm.EarnMoney(value);
 
         if (gm.villagerCount <= 0)
             gm.LoseTheGame();
@@ -146,7 +161,7 @@ public class VillageManager : MonoBehaviour {
 
     public void RemoveVillagers()
     {
-        for(int i = 0; i < villagerList.Count; i++)
+        for (int i = 0; i < villagerList.Count; i++)
         {
             villagerList[i].gameObject.SetActive(false);
         }
@@ -192,8 +207,11 @@ public class VillageManager : MonoBehaviour {
         gm.food -= GetPwUpgradeCost();
         gm.UpdateFoodText();
 
-        UpdateUpgradeButtons();
+        villagerPerWave += (int)Mathf.Floor(1.5f * baseVillagerPerWave);
+        pwLevel++;
 
+        UpdateUpgradeButtons();
+        UpdateVillageInfo();
     }
 
     private void UpgradePpw()
@@ -201,7 +219,11 @@ public class VillageManager : MonoBehaviour {
         gm.food -= GetPpwUpgradeCost();
         gm.UpdateFoodText();
 
+        villagerPerPerfectWave += (int)Mathf.Floor(1.5f * baseVillagerPerPerfectWave);
+        ppwLevel++;
+
         UpdateUpgradeButtons();
+        UpdateVillageInfo();
     }
 
     private void UpgradeRate()
@@ -209,8 +231,11 @@ public class VillageManager : MonoBehaviour {
         gm.food -= GetRateUpgradeCost();
         gm.UpdateFoodText();
 
-        UpdateUpgradeButtons();
+        villagerPerTime += (int)Mathf.Floor(1.5f * baseVillagerPerTime);
+        rateLevel++;
 
+        UpdateUpgradeButtons();
+        UpdateVillageInfo();
     }
 
     private void UpdateUpgradeButtons()

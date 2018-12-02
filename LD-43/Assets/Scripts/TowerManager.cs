@@ -53,10 +53,12 @@ public class TowerManager : MonoBehaviour
                     {
                         selectedSpot = rayHitTowerSpot.collider.gameObject;
                         towerShopPanel.SetActive(true);
+                        DisableUpgradeTowerPanel();
                     }
                     else
                     {
                         // The spot is used, we can upgrade/delete the tower
+                        DisableUpgradeTowerPanel();
                         selectedTower = usedTowerSpots[rayHitTowerSpot.collider.gameObject];
                         selectedTowerTower = selectedTower.GetComponent<Tower>();
                         selectedTowerTower.isSelectedMode = true;
@@ -66,6 +68,9 @@ public class TowerManager : MonoBehaviour
                 else if (Physics.Raycast(rayPiece, out rayHitTowerSpot, Mathf.Infinity, 1 << layerTower))
                 {
                     // We can upgrade/delete the tower
+                    DisableUpgradeTowerPanel();
+                    selectedSpot = null;
+                    towerShopPanel.SetActive(false);
                     selectedTower = rayHitTowerSpot.collider.gameObject;
                     selectedTowerTower = selectedTower.GetComponent<Tower>();
                     selectedTowerTower.isSelectedMode = true;

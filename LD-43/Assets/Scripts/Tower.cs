@@ -105,7 +105,7 @@ public class Tower : MonoBehaviour
 
     public int GetUpgradeCost()
     {
-        return price / 2 * (int)Mathf.Ceil(Mathf.Pow(1.5f, level-1));
+        return price / 2 * (int)Mathf.Ceil(Mathf.Pow(2f, level-1));
     }
 
     public int GetSellValue()
@@ -114,7 +114,7 @@ public class Tower : MonoBehaviour
 
         for(int i=1; i<level; i++)
         {
-            value += price / 4 * (int)Mathf.Ceil(Mathf.Pow(1.5f, i - 1));
+            value += price / 4 * (int)Mathf.Ceil(Mathf.Pow(2f, i - 1));
         }
 
         return value;
