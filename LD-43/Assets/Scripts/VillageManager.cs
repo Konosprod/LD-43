@@ -9,10 +9,22 @@ public class VillageManager : MonoBehaviour {
     [Header("Game Logic")]
     public int maxVillagers = 30;
     public float radiusSpawn = 3f;
+
+
+    //Value managed/used by the village
     public int villagerPerWave = 15;
     public int villagerPerPerfectWave = 25;
     public int villagerPerTime = 10;
     public float spawnRate = 10f;
+    public int pricePw = 30;
+    public int pricePpw = 50;
+    public int priceRate = 20;
+
+
+    private int pwLevel = 1;
+    private int ppwLevel = 1;
+    private int rateLevel = 1;
+
     public List<GameObject> listPrefab;
     public List<Villager> villagerList = new List<Villager>();
     private GameManager gm;
@@ -23,6 +35,12 @@ public class VillageManager : MonoBehaviour {
     public Text villagerPerTimeText;
     public Text villagerPerWaveText;
     public Text villagerPerPerfectWaveText;
+
+    [Header("UI Upgrade")]
+    public GameObject upgradePanel;
+    public Button upgradeRateButton;
+    public Button upgradePerWaveButton;
+    public Button upgradePerPerfectWaveButton;
 
     public GameObject spawner;
     private GameObject selectedVillager;
@@ -49,6 +67,9 @@ public class VillageManager : MonoBehaviour {
             villagerList.Add(villager.GetComponent<Villager>());
         }
 
+        upgradeRateButton.onClick.AddListener(UpgradeRate);
+        upgradePerWaveButton.onClick.AddListener(UpgradePw);
+        upgradePerPerfectWaveButton.onClick.AddListener(UpgradePpw);
     }
 	
 	// Update is called once per frame
@@ -138,4 +159,89 @@ public class VillageManager : MonoBehaviour {
         villagerPerPerfectWaveText.text = villagerPerPerfectWave.ToString() + " each perfect wave";
     }
 
+    public void ShowUpgradePanel()
+    {
+        int food = gm.food;
+        upgradePerPerfectWaveButton.GetComponentInChildren<Text>().text = "Per Perfect Cost : " + GetPpwUpgradeCost().ToString();
+        upgradePerWaveButton.GetComponentInChildren<Text>().text = "Per Wave Cost : " + GetPwUpgradeCost().ToString();
+        upgradeRateButton.GetComponentInChildren<Text>().text = "Rate Cost : " + GetRateUpgradeCost();
+
+        UpdateUpgradeButtons();
+
+        upgradePanel.SetActive(true);
+    }
+
+    private int GetPwUpgradeCost()
+    {
+        return pricePw / 2 * (int)Mathf.Ceil(Mathf.Pow(1.5f, pwLevel - 1));
+    }
+
+    private int GetPpwUpgradeCost()
+    {
+        return pricePpw / 2 * (int)Mathf.Ceil(Mathf.Pow(1.5f, ppwLevel - 1));
+    }
+
+    private int GetRateUpgradeCost()
+    {
+        return priceRate / 2 * (int)Mathf.Ceil(Mathf.Pow(1.5f, rateLevel - 1));
+    }
+
+
+    private void UpgradePw()
+    {
+        gm.food -= GetPwUpgradeCost();
+        gm.UpdateFoodText();
+
+        UpdateUpgradeButtons();
+
+    }
+
+    private void UpgradePpw()
+    {
+        gm.food -= GetPpwUpgradeCost();
+        gm.UpdateFoodText();
+
+        UpdateUpgradeButtons();
+    }
+
+    private void UpgradeRate()
+    {
+        gm.food -= GetRateUpgradeCost();
+        gm.UpdateFoodText();
+
+        UpdateUpgradeButtons();
+
+    }
+
+    private void UpdateUpgradeButtons()
+    {
+        int food = gm.food;
+
+        if (GetPpwUpgradeCost() > food)
+        {
+            upgradePerPerfectWaveButton.interactable = false;
+        }
+        else
+        {
+            upgradePerPerfectWaveButton.interactable = true;
+        }
+
+        if (GetRateUpgradeCost() > food)
+        {
+            upgradeRateButton.interactable = false;
+        }
+        else
+        {
+            upgradeRateButton.interactable = true;
+        }
+
+        if (GetPwUpgradeCost() > food)
+        {
+            upgradePerWaveButton.interactable = false;
+        }
+        else
+        {
+            upgradePerWaveButton.interactable = true;
+        }
+    }
 }

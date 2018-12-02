@@ -13,6 +13,7 @@ public class Mob : MonoBehaviour
     public int damage = 1;
     public float maxHp = 20f;
     public float speed = 2f;
+    public int foodLoot = 10;
 
     [Header("UI")]
     public Image healthBar;

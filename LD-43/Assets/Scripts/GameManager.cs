@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Text villagerText;
     public Text moneyText;
     public Text timeText;
+    public Text foodText;
     public Button buttonVillage;
     public GameObject panelVillageInfo;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public int villagerCount = 450;
     private int wave = 1;
     private int money = 5000;
+    public int food = 10;
     private const float pauseTime = 30f;
     private float currentPauseTime = 10f;
     private bool isPlaying = false; // false = pause time between waves, true = wave
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
         UpdateWaveText();
         UpdateMoneyText();
         UpdateTimeText();
+        UpdateFoodText();
     }
 
     // Update is called once per frame
@@ -210,6 +213,8 @@ public class GameManager : MonoBehaviour
 
     public void IAmAMobAndIDied(GameObject mob)
     {
+        food += mob.GetComponent<Mob>().foodLoot;
+        UpdateFoodText();
         currentWaveMobs.Remove(mob);
     }
 
@@ -333,6 +338,12 @@ public class GameManager : MonoBehaviour
     private void UpdateMoneyText()
     {
         moneyText.text = "Money : " + money;
+    }
+
+
+    public void UpdateFoodText()
+    {
+        foodText.text = "Food : " + food;
     }
 
     public void LoseTheGame()
