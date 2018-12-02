@@ -31,7 +31,7 @@ public class IceTower : MonoBehaviour
         {
             if (mobDetection.mobsInRange.Count > 0)
             {
-                if (Time.time > lastAttack + (tower.isBuffedByArrowTower ? tower.fireTime / 1.2f : tower.fireTime)) // Deal damage
+                if (Time.time > lastAttack + (tower.isBuffedByArrowTower >= 1 ? tower.fireTime / (1 + 0.2f * tower.isBuffedByArrowTower) : tower.fireTime)) // Deal damage
                 {
                     if (tower.level < 5) // One beam
                     {

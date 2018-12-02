@@ -28,7 +28,7 @@ public class ArrowTower : MonoBehaviour
         {
             if (mobDetection.mobsInRange.Count > 0)
             {
-                if (Time.time > lastAttack + (tower.isBuffedByArrowTower ? tower.fireTime / 1.2f : tower.fireTime)) // Fire an arrow
+                if (Time.time > lastAttack + (tower.isBuffedByArrowTower >= 1 ? tower.fireTime / (1 + 0.2f * tower.isBuffedByArrowTower) : tower.fireTime)) // Fire an arrow
                 {
                     GameObject target = mobDetection.GetTargetClosestToGoal();
                     lastAttack = Time.time;

@@ -124,7 +124,7 @@ public class TowerManager : MonoBehaviour
             GameObject tower = pair.Value;
             if (tower != arrowTower.gameObject && Vector3.Distance(tower.transform.position, arrowTower.transform.position) < arrowTower.range / 2f)
             {
-                tower.GetComponent<Tower>().isBuffedByArrowTower = true;
+                tower.GetComponent<Tower>().isBuffedByArrowTower++;
             }
         }
     }
@@ -137,12 +137,12 @@ public class TowerManager : MonoBehaviour
         {
             GameObject tower = pair.Value;
             Tower towerTower = tower.GetComponent<Tower>();
-            towerTower.isBuffedByArrowTower = false;
+            towerTower.isBuffedByArrowTower = 0;
             ArrowTower arrowTower = tower.GetComponent<ArrowTower>();
             if(arrowTower != null && towerTower.level >= 5)
             {
                 arrowTowers.Add(towerTower);
-                towerTower.isBuffedByArrowTower = true;
+                towerTower.isBuffedByArrowTower++;
             }
         }
 

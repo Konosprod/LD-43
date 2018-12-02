@@ -19,7 +19,7 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public float fireTime;
     
-    public bool isBuffedByArrowTower = false;
+    public int isBuffedByArrowTower = 0;
 
     [HideInInspector]
     public float nextLevelDamage;
