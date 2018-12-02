@@ -10,13 +10,18 @@ public class TowerUpgradePanel : MonoBehaviour {
 
     void OnEnable()
     {
-        upgradeButton.GetComponentInChildren<Text>().text = "Upgrade : " + TowerManager._instance.selectedTowerTower.GetUpgradeCost();
-        sellButton.GetComponentInChildren<Text>().text = "Sell : " + TowerManager._instance.selectedTowerTower.GetSellValue();
+        UpdateValues();
     }
 
     void Update()
     {
         upgradeButton.interactable = GameManager._instance.CanAfford(TowerManager._instance.selectedTowerTower.GetUpgradeCost());
+    }
+
+    public void UpdateValues()
+    {
+        upgradeButton.GetComponentInChildren<Text>().text = "Upgrade : " + TowerManager._instance.selectedTowerTower.GetUpgradeCost();
+        sellButton.GetComponentInChildren<Text>().text = "Sell : " + TowerManager._instance.selectedTowerTower.GetSellValue();
     }
 
 	public void UpgradeTower()

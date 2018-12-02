@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour
         SpendMoney(TowerManager._instance.selectedTowerTower.GetUpgradeCost());
         TowerManager._instance.selectedTowerTower.level++;
 
-        TowerManager._instance.DisableUpgradeTowerPanel();
+        TowerManager._instance.upgradeTowerPanel.GetComponent<TowerUpgradePanel>().UpdateValues();
     }
 
     public void SellSelectedTower()
