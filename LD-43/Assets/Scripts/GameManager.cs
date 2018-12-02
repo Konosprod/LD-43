@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Text waveText;
     public Text villagerText;
     public Text moneyText;
+    public Text timeText;
 
 
     // Internal game logic
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         UpdateVillagerText();
         UpdateWaveText();
         UpdateMoneyText();
+        UpdateTimeText();
     }
 
     // Update is called once per frame
@@ -113,6 +115,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        UpdateTimeText();
     }
 
 
@@ -196,6 +200,14 @@ public class GameManager : MonoBehaviour
         SpendMoney(tower.price);
 
         TowerManager._instance.towerShopPanel.SetActive(false);
+    }
+
+    private void UpdateTimeText()
+    {
+        if (isPlaying)
+            timeText.text = "Time : Playing";
+        else
+            timeText.text = "Time : " + currentPauseTime.ToString("0") + " s";
     }
 
     private void UpdateVillagerText()
