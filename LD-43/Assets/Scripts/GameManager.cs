@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Text moneyText;
     public Text timeText;
     public Button buttonVillage;
+    public GameObject panelVillageInfo;
 
 
     // Internal game logic
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     private const float spawnDelay = 0.5f;
     private float currentSpawnDelay;
 
+    private bool isPerfectWave = true;
 
     private bool isInVillage = false;
 
@@ -104,8 +106,14 @@ public class GameManager : MonoBehaviour
         {
             if (IsWaveDone())
             {
+                if (isPerfectWave)
+                    villagerCount += villageManager.villagerPerPerfectWave;
+                else
+                    villagerCount += villageManager.villagerPerWave;
+
                 wave++;
                 isPlaying = false;
+                isPerfectWave = true;
                 UpdateWaveText();
                 if (wave % 5 == 0 && wave <= 20)
                 {
@@ -216,6 +224,8 @@ public class GameManager : MonoBehaviour
             LoseTheGame();
         }
 
+        isPerfectWave = false;
+
         UpdateVillagerText();
     }
 
@@ -261,6 +271,8 @@ public class GameManager : MonoBehaviour
         buttonVillage.GetComponentInChildren<Text>().text = "Back";
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoBack);
+
+        panelVillageInfo.SetActive(true);
     }
 
     private void GoBack()
@@ -279,6 +291,8 @@ public class GameManager : MonoBehaviour
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoToVillage);
         isInVillage = false;
+
+        panelVillageInfo.SetActive(false);
     }
 
     public void UpgradeSelectedTower()

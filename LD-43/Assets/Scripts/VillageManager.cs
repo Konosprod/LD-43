@@ -9,7 +9,9 @@ public class VillageManager : MonoBehaviour {
     [Header("Game Logic")]
     public int maxVillagers = 30;
     public float radiusSpawn = 3f;
-    public float villagerPerWave = 15f;
+    public int villagerPerWave = 15;
+    public int villagerPerPerfectWave = 25;
+    public int villagerPerTime = 10;
     public float spawnRate = 10f;
     public List<GameObject> listPrefab;
     public List<Villager> villagerList = new List<Villager>();
@@ -18,12 +20,19 @@ public class VillageManager : MonoBehaviour {
     [Header("UI")]
     public GameObject panelInfoVillager;
     public Text valueText;
+    public Text villagerPerTimeText;
+    public Text villagerPerWaveText;
+    public Text villagerPerPerfectWaveText;
 
     public GameObject spawner;
     private GameObject selectedVillager;
 
+    private float villagerTime;
+
 	// Use this for initialization
 	void Start () {
+
+        villagerTime = spawnRate;
 
         gm = GameManager._instance;
 
@@ -43,7 +52,19 @@ public class VillageManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        villagerTime -= Time.deltaTime;
+
+        //Spawn villager per time
+        if(villagerTime <= 0)
+        {
+            gm.villagerCount += villagerPerTime;
+            gm.UpdateVillagerText();
+            villagerTime = spawnRate;
+        }
+
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -86,6 +107,8 @@ public class VillageManager : MonoBehaviour {
 
             amount -= nbVillager * (int)Mathf.Pow(10, numberPower);
         }
+
+        UpdateVillageInfo();
     }
 
     public void SacrificeVillager()
@@ -106,6 +129,13 @@ public class VillageManager : MonoBehaviour {
         {
             villagerList[i].gameObject.SetActive(false);
         }
+    }
+
+    private void UpdateVillageInfo()
+    {
+        villagerPerTimeText.text = villagerPerTime.ToString() + " villgers every " + spawnRate.ToString() + " s";
+        villagerPerWaveText.text = villagerPerWave.ToString() + " villager per wave";
+        villagerPerPerfectWaveText.text = villagerPerPerfectWave.ToString() + " each perfect wave";
     }
 
 }
