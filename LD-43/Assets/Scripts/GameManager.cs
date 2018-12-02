@@ -262,6 +262,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos = Camera.main.transform.position;
         pos.z = -16f;
         Camera.main.transform.position = pos;
+        villageManager.RemoveVillagers();
         buttonVillage.GetComponentInChildren<Text>().text = "Village";
         buttonVillage.onClick.AddListener(GoToVillage);
         isInVillage = false;

@@ -8,7 +8,8 @@ public class VillageManager : MonoBehaviour {
 
 
     public List<GameObject> listPrefab;
-    GameManager gm;
+    public List<GameObject> villagerList = new List<GameObject>();
+    private GameManager gm;
 
     [Header("UI")]
     public GameObject panelInfoVillager;
@@ -68,7 +69,7 @@ public class VillageManager : MonoBehaviour {
 
                 int draw = Random.Range(0, listPrefab.Count);
                 GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
-
+                villagerList.Add(villager);
                 villager.GetComponent<Villager>().valueVillagers = (int)Mathf.Pow(10, numberPower);
             }
 
@@ -80,6 +81,16 @@ public class VillageManager : MonoBehaviour {
     {
         Destroy(selectedVillager);
         panelInfoVillager.SetActive(false);
+    }
+
+    public void RemoveVillagers()
+    {
+        foreach (GameObject go in villagerList)
+        {
+            Destroy(go);
+        }
+
+        villagerList.Clear();
     }
 
 }
