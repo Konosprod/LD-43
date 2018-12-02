@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowTower : MonoBehaviour {
+public class ArrowTower : MonoBehaviour
+{
 
     public GameObject ArrowPrefab;
 
@@ -33,7 +34,9 @@ public class ArrowTower : MonoBehaviour {
                     lastAttack = Time.time;
                     if (target != null)
                     {
-                        GameObject arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
+                        Vector3 pos = transform.position;
+                        pos += new Vector3(0f, 1f, 0f);
+                        GameObject arrow = Instantiate(ArrowPrefab, pos, Quaternion.identity);
                         Projectile proj = arrow.GetComponent<Projectile>();
                         proj.target = target;
                         proj.damage = tower.damage;
