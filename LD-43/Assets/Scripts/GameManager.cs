@@ -254,6 +254,7 @@ public class GameManager : MonoBehaviour
         pos.z = 32f;
         Camera.main.transform.position = pos;
         buttonVillage.GetComponentInChildren<Text>().text = "Back";
+        buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoBack);
     }
 
@@ -264,6 +265,7 @@ public class GameManager : MonoBehaviour
         Camera.main.transform.position = pos;
         villageManager.RemoveVillagers();
         buttonVillage.GetComponentInChildren<Text>().text = "Village";
+        buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoToVillage);
         isInVillage = false;
     }

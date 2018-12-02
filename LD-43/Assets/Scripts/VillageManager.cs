@@ -9,7 +9,7 @@ public class VillageManager : MonoBehaviour {
     public int maxVillagers = 30;
     public float radiusSpawn = 3f;
     public List<GameObject> listPrefab;
-    public List<GameObject> villagerList = new List<GameObject>();
+    public List<Villager> villagerList = new List<Villager>();
     private GameManager gm;
 
     [Header("UI")]
@@ -34,7 +34,7 @@ public class VillageManager : MonoBehaviour {
             GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
 
             villager.SetActive(false);
-            villagerList.Add(villager);
+            villagerList.Add(villager.GetComponent<Villager>());
         }
 
     }
@@ -76,8 +76,8 @@ public class VillageManager : MonoBehaviour {
 
             for (int i = 0; i < nbVillager; i++)
             {
-                villagerList[indexVillager].SetActive(true);
-                villagerList[indexVillager].GetComponent<Villager>().valueVillagers = (int)Mathf.Pow(10, numberPower);
+                villagerList[indexVillager].gameObject.SetActive(true);
+                villagerList[indexVillager].valueVillagers = (int)Mathf.Pow(10, numberPower);
                 indexVillager++;
             }
 
@@ -95,7 +95,7 @@ public class VillageManager : MonoBehaviour {
     {
         for(int i = 0; i < villagerList.Count; i++)
         {
-            villagerList[i].SetActive(false);
+            villagerList[i].gameObject.SetActive(false);
         }
     }
 
