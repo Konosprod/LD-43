@@ -7,11 +7,15 @@ public class IceTower : MonoBehaviour
 
     public float slowValue = 0.7f;
     public IceBeam iceBeam;
+    public IceBeam iceBeam2;
+    public IceBeam iceBeam3;
 
     private Tower tower;
     private MobDetection mobDetection;
 
     private float lastAttack = 0.0f;
+    private float lastAttack2 = 0.0f;
+    private float lastAttack3 = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -31,21 +35,83 @@ public class IceTower : MonoBehaviour
             {
                 if (Time.time > lastAttack + tower.fireTime) // Deal damage
                 {
-                    GameObject target = mobDetection.GetTargetClosestToGoal();
-                    lastAttack = Time.time;
-                    if (target != null)
+                    if (tower.level < 5) // One beam
                     {
-                        Mob mob = target.GetComponent<Mob>();
-                        mob.TakeDamage(tower.damage);
-                        mob.ApplySlow(slowValue, tower.fireTime + 0.1f);
+                        GameObject target = mobDetection.GetTargetClosestToGoal();
+                        if (target != null)
+                        {
+                            Mob mob = target.GetComponent<Mob>();
+                            mob.TakeDamage(tower.damage);
+                            mob.ApplySlow(slowValue, tower.fireTime + 0.1f);
 
-                        iceBeam.activated = true;
-                        iceBeam.target = target;
+                            lastAttack = Time.time;
+
+                            iceBeam.activated = true;
+                            iceBeam.target = target;
+                        }
+                        else
+                        {
+                            iceBeam.activated = false;
+                            iceBeam.target = null;
+                        }
                     }
-                    else
+                    else // 3 beams
                     {
-                        iceBeam.activated = false;
-                        iceBeam.target = null;
+                        List<GameObject> targets = mobDetection.GetThreeClosestTargets();
+                        if(targets.Count > 0)
+                        {
+                            int trueTargets = 0;
+                            foreach(GameObject target in targets)
+                            {
+                                if (target != null)
+                                {
+                                    Mob mob = target.GetComponent<Mob>();
+                                    mob.TakeDamage(tower.damage);
+                                    mob.ApplySlow(slowValue, tower.fireTime + 0.1f);
+
+                                    if (trueTargets == 0)
+                                    {
+                                        lastAttack = Time.time;
+
+                                        iceBeam.activated = true;
+                                        iceBeam.target = target;
+                                    }
+                                    else if(trueTargets == 1)
+                                    {
+                                        lastAttack2 = Time.time;
+
+                                        iceBeam2.activated = true;
+                                        iceBeam2.target = target;
+                                    }
+                                    else if (trueTargets == 2)
+                                    {
+                                        lastAttack3 = Time.time;
+
+                                        iceBeam3.activated = true;
+                                        iceBeam3.target = target;
+                                    }
+
+                                    trueTargets++;
+                                }
+                            }
+
+                            if(trueTargets == 0)
+                            {
+                                ResetBeams();
+                            }
+                            else if(trueTargets == 1)
+                            {
+                                ResetBeams23();
+                            }
+                            else if(trueTargets == 2)
+                            {
+                                ResetBeam3();
+                            }
+                        }
+                        else
+                        {
+                            ResetBeams();
+                        }
                     }
                 }
                 else
@@ -55,13 +121,47 @@ public class IceTower : MonoBehaviour
                         iceBeam.activated = false;
                         iceBeam.target = null;
                     }
+                    if (!mobDetection.mobsInRange.Contains(iceBeam2.target))
+                    {
+                        iceBeam2.activated = false;
+                        iceBeam2.target = null;
+                    }
+                    if (!mobDetection.mobsInRange.Contains(iceBeam3.target))
+                    {
+                        iceBeam3.activated = false;
+                        iceBeam3.target = null;
+                    }
                 }
             }
             else
             {
-                iceBeam.activated = false;
-                iceBeam.target = null;
+                ResetBeams();
             }
         }
+    }
+
+
+    private void ResetBeams()
+    {
+        iceBeam.activated = false;
+        iceBeam.target = null;
+        iceBeam2.activated = false;
+        iceBeam2.target = null;
+        iceBeam3.activated = false;
+        iceBeam3.target = null;
+    }
+
+    private void ResetBeams23()
+    {
+        iceBeam2.activated = false;
+        iceBeam2.target = null;
+        iceBeam3.activated = false;
+        iceBeam3.target = null;
+    }
+
+    private void ResetBeam3()
+    {
+        iceBeam3.activated = false;
+        iceBeam3.target = null;
     }
 }

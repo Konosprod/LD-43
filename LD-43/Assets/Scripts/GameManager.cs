@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Add a first random spawner
-        int randSpawn = Random.Range(0, spawners.Count);
+        int randSpawn = /*Random.Range(0, spawners.Count)*/0;
         mobWave.activeSpawners.Add(spawners[randSpawn]);
 
         // Hide inactive spawners

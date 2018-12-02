@@ -8670,6 +8670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ee8f9816dfd0c49955c68edc2bfabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxVillagers: 30
+  radiusSpawn: 3
   listPrefab:
   - {fileID: 1086040552439230, guid: 25624997d08d47e47b06642d88d66c80, type: 2}
   - {fileID: 1757169162739760, guid: a6061496812ca9548b18dddf9e29d47b, type: 2}
