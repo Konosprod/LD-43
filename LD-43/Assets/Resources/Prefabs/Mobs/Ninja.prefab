@@ -362,7 +362,7 @@ MonoBehaviour:
   mobPrefab: {fileID: 1796408504805022}
   damage: 1
   maxHp: 75
-  speed: 2
+  speed: 4
   healthBar: {fileID: 114435284766779746}
   childMesh: {fileID: 1885625398684822}
   canDealDamage: 1
