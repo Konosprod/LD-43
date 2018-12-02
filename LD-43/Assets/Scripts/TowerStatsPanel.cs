@@ -57,9 +57,9 @@ public class TowerStatsPanel : MonoBehaviour {
         else if (towerType == "BalistaTower" && towerTower.level >= 4)
         {
             if (towerTower.level == 4)
-                towerSpecials.text += "<color=#00ffffff>Every 30 seconds, fire at up to 15 enemies in range.</color>";
+                towerSpecials.text += "<color=#00ffffff>Every 15 seconds, fire at up to 15 enemies in range.</color>";
             if (towerTower.level > 4)
-                towerSpecials.text += "Every 30 seconds, fire at up to 15 enemies in range.";
+                towerSpecials.text += "Every 15 seconds, fire at up to 15 enemies in range.";
         }
         else
         {
