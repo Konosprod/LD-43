@@ -220,9 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c9f4b477dedd244970f2fce2986515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
-  range: 6
-  damage: 3
+  price: 60
+  range: 7
+  damage: 5
   fireTime: 0.2
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
