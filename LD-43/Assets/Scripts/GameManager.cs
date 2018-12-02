@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Internal game logic
     public int villagerCount = 450;
     private int wave = 1;
-    private int money = 500;
+    private int money = 5000;
     private const float pauseTime = 30f;
     private float currentPauseTime = 10f;
     private bool isPlaying = false; // false = pause time between waves, true = wave
