@@ -70,6 +70,11 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlaying)
         {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                currentPauseTime -= pauseTime; // Skip pause
+            }
+
             currentPauseTime -= Time.deltaTime;
             if (currentPauseTime <= 0f)
             {
@@ -83,7 +88,21 @@ public class GameManager : MonoBehaviour
         {
             if (IsWaveDone())
             {
+                wave++;
                 isPlaying = false;
+                UpdateWaveText();
+                if(wave % 5 == 0 && wave <= 20)
+                {
+                    // Add a spawner to the available spawners
+                    foreach(GameObject spawner in spawners)
+                    {
+                        if(!mobWave.activeSpawners.Contains(spawner))
+                        {
+                            mobWave.activeSpawners.Add(spawner);
+                            break;
+                        }
+                    }
+                }
             }
             else
             {
