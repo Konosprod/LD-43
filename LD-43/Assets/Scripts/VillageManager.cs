@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class VillageManager : MonoBehaviour {
 
@@ -9,7 +10,12 @@ public class VillageManager : MonoBehaviour {
     public List<GameObject> listPrefab;
     GameManager gm;
 
+    [Header("UI")]
+    public GameObject panelInfoVillager;
+    public Text valueText;
+
     public GameObject spawner;
+    private GameObject selectedVillager;
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +26,27 @@ public class VillageManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.GetComponent<Villager>() != null)
+                {
+                    selectedVillager = hit.transform.gameObject;
+                    valueText.text = "Value : " + hit.transform.GetComponent<Villager>().valueVillagers;
+                    panelInfoVillager.SetActive(true);
+                }
+                else
+                {
+                    panelInfoVillager.SetActive(false);
+                }
+            }
+        }
+    }
 
     public void GenerateVillagers()
     {
@@ -49,6 +74,12 @@ public class VillageManager : MonoBehaviour {
 
             amount -= nbVillager * (int)Mathf.Pow(10, numberPower);
         }
+    }
+
+    public void SacrificeVillager()
+    {
+        Destroy(selectedVillager);
+        panelInfoVillager.SetActive(false);
     }
 
 }

@@ -15,22 +15,6 @@ public class Villager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.GetComponent<Villager>() != null)
-                {
-                    Debug.Log(hit.transform.gameObject.name);
-                }
-                else
-                {
-                    Debug.Log("This isn't a Player");
-                }
-            }
-        }
     }
 }
