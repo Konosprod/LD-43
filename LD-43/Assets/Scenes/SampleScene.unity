@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3219492, g: 0.48881114, b: 0.71709734, a: 1}
+  m_IndirectSpecularColor: {r: 0.321953, g: 0.48881346, b: 0.7170972, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23355,6 +23355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerShopPanel: {fileID: 269217152}
   upgradeTowerPanel: {fileID: 1318128280}
+  layerTower: 0
   selectedSpot: {fileID: 0}
   selectedTower: {fileID: 0}
   selectedTowerTower: {fileID: 0}
