@@ -24,8 +24,8 @@ public class TowerStatsPanel : MonoBehaviour {
         string towerType = tower.name.Split('(')[0];
         towerNameLevel.text = towerType + " level " + towerTower.level;
         towerDamage.text = "Damage : \n" + towerTower.damage.ToString("F") + " => " + towerTower.nextLevelDamage.ToString("F") + " <color=#00ffffff>(+" + (towerTower.nextLevelDamage - towerTower.damage).ToString("F") + ")</color>";
-        towerFireRate.text = "FireRate : " + (1 / towerTower.fireTime).ToString("F") + ((towerTower.fireTime == towerTower.nextLevelFireTime)?"":" => " + towerTower.nextLevelFireTime + " <color=#00ffffff>(+" + (towerTower.nextLevelFireTime - towerTower.fireTime).ToString("F") + ")</color>");
-        towerRange.text = "Range : " + towerTower.range.ToString("F") + ((towerTower.range == towerTower.nextLevelRange) ? "" : " => " + towerTower.nextLevelRange + " <color=#00ffffff>(+" + (towerTower.nextLevelRange - towerTower.range).ToString("F") + ")</color>"); ;
+        towerFireRate.text = "FireRate : " + (1 / towerTower.fireTime).ToString("F") + ((towerTower.fireTime == towerTower.nextLevelFireTime)?"":(" => " + (1 / towerTower.nextLevelFireTime).ToString("F") + " <color=#00ffffff>(+" + ((1 / towerTower.nextLevelFireTime) - (1 / towerTower.fireTime)).ToString("F") + ")</color>"));
+        towerRange.text = "Range : " + towerTower.range.ToString("F") + ((towerTower.range == towerTower.nextLevelRange) ? "" :( " => " + towerTower.nextLevelRange.ToString("F") + " <color=#00ffffff>(+" + (towerTower.nextLevelRange - towerTower.range).ToString("F") + ")</color>"));
 
         towerSpecials.text = "Specials : ";
 

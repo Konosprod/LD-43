@@ -42,6 +42,8 @@ public class Tower : MonoBehaviour
         fireTime = baseFireTime;
 
         nextLevelDamage = baseDamage * damageIncreaseFactor;
+        nextLevelFireTime = baseFireTime;
+        nextLevelRange = baseRange;
     }
 
     public void LevelUp()
@@ -53,23 +55,31 @@ public class Tower : MonoBehaviour
         if(level == 5)
         {
             // Mono Sayan 2D
-
+            damage *= 2f;
+            range *= 1.2f;
+            fireTime *= 0.8f;
         }
         else if(level == 10)
         {
             // Stereo Sayan 3D
-
+            damage *= 2f;
+            range *= 1.2f;
+            fireTime *= 0.8f;
         }
 
         // Increase the next level stats
         nextLevelDamage = damage * damageIncreaseFactor;
         if(level+1 == 5)
         {
-
+            nextLevelDamage *= 2f;
+            nextLevelRange *= 1.2f;
+            nextLevelFireTime *= 0.8f;
         }
         else if(level+1 == 10)
         {
-
+            nextLevelDamage *= 2f;
+            nextLevelRange *= 1.2f;
+            nextLevelFireTime *= 0.8f;
         }
 
 
