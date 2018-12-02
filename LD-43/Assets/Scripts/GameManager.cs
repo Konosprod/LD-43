@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
     public void UpgradeSelectedTower()
     {
         SpendMoney(TowerManager._instance.selectedTowerTower.GetUpgradeCost());
-        TowerManager._instance.selectedTowerTower.level++;
+        TowerManager._instance.selectedTowerTower.LevelUp();
 
         TowerManager._instance.upgradeTowerPanel.GetComponent<TowerUpgradePanel>().UpdateValues();
     }

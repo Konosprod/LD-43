@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TowerUpgradePanel : MonoBehaviour {
 
+    public TowerStatsPanel towerStatsPanel;
     public Button upgradeButton;
     public Button sellButton;
 

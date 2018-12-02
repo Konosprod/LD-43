@@ -213,9 +213,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 100
-  range: 8
+  baseDamage: 50
+  baseRange: 8
+  baseFireTime: 1.5
+  level: 1
   damage: 50
+  range: 8
   fireTime: 1.5
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}
+  isSelectedMode: 0

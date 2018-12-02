@@ -6,10 +6,25 @@ public class Tower : MonoBehaviour
 {
     [Header("Stats")]
     public int price = 30;
-    public float range = 3f;
-    public float damage = 5f;
-    public float fireTime = 0.5f; // In seconds
+    public float baseDamage = 5f;
+    public float baseRange = 3f;
+    public float baseFireTime = 0.5f; // In seconds
     public int level = 1;
+    public float damageIncreaseFactor = 1.3f;
+
+    [HideInInspector]
+    public float damage;
+    [HideInInspector]
+    public float range;
+    [HideInInspector]
+    public float fireTime;
+
+    [HideInInspector]
+    public float nextLevelDamage;
+    [HideInInspector]
+    public float nextLevelRange;
+    [HideInInspector]
+    public float nextLevelFireTime;
 
     [Header("Preview")]
     public bool isPreviewMode = true;
@@ -22,7 +37,43 @@ public class Tower : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        damage = baseDamage;
+        range = baseRange;
+        fireTime = baseFireTime;
 
+        nextLevelDamage = baseDamage * damageIncreaseFactor;
+    }
+
+    public void LevelUp()
+    {
+        // Increase the actual stats
+        level++;
+        damage *= damageIncreaseFactor;
+
+        if(level == 5)
+        {
+            // Mono Sayan 2D
+
+        }
+        else if(level == 10)
+        {
+            // Stereo Sayan 3D
+
+        }
+
+        // Increase the next level stats
+        nextLevelDamage = damage * damageIncreaseFactor;
+        if(level+1 == 5)
+        {
+
+        }
+        else if(level+1 == 10)
+        {
+
+        }
+
+
+        TowerManager._instance.upgradeTowerPanel.GetComponent<TowerUpgradePanel>().towerStatsPanel.SetTowerStatsInfo();
     }
 
     public int GetUpgradeCost()

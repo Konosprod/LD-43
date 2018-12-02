@@ -13367,6 +13367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aebcbe6dc119147afe4a485112d062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerStatsPanel: {fileID: 1940891610}
   upgradeButton: {fileID: 381983295}
   sellButton: {fileID: 1537175600}
 --- !u!114 &1318128283
