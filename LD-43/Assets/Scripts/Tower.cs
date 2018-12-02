@@ -34,6 +34,11 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public bool isSelectedMode = false;
 
+    [Header("Evolution")]
+    public GameObject blueRing;
+    public GameObject redRing;
+
+
     // Use this for initialization
     void Start()
     {
@@ -55,6 +60,8 @@ public class Tower : MonoBehaviour
         if(level == 5)
         {
             // Mono Sayan 2D
+            blueRing.SetActive(true);
+
             float oldRange = range;
             damage *= 2f;
             range *= 1.2f;
@@ -65,6 +72,8 @@ public class Tower : MonoBehaviour
         else if(level == 10)
         {
             // Stereo Sayan 3D
+            redRing.SetActive(true);
+
             float oldRange = range;
             damage *= 2f;
             range *= 1.2f;
