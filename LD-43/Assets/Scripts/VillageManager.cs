@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class VillageManager : MonoBehaviour {
 
-
+    public int maxVillagers = 30;
+    public float radiusSpawn = 3f;
     public List<GameObject> listPrefab;
     public List<GameObject> villagerList = new List<GameObject>();
     private GameManager gm;
@@ -23,7 +24,20 @@ public class VillageManager : MonoBehaviour {
 
         gm = GameManager._instance;
 
-	}
+        for (int i = 0; i < maxVillagers; i++)
+        {
+            Vector3 originPoint = spawner.gameObject.transform.position;
+            originPoint.x += Random.Range(-radiusSpawn, radiusSpawn);
+            originPoint.z += Random.Range(-radiusSpawn, radiusSpawn);
+
+            int draw = Random.Range(0, listPrefab.Count);
+            GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
+
+            villager.SetActive(false);
+            villagerList.Add(villager);
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -51,8 +65,7 @@ public class VillageManager : MonoBehaviour {
 
     public void GenerateVillagers()
     {
-        float radius = 3f;
-
+        int indexVillager = 0;
         int amount = gm.villagerCount;
 
 
@@ -63,14 +76,9 @@ public class VillageManager : MonoBehaviour {
 
             for (int i = 0; i < nbVillager; i++)
             {
-                Vector3 originPoint = spawner.gameObject.transform.position;
-                originPoint.x += Random.Range(-radius, radius);
-                originPoint.z += Random.Range(-radius, radius);
-
-                int draw = Random.Range(0, listPrefab.Count);
-                GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
-                villagerList.Add(villager);
-                villager.GetComponent<Villager>().valueVillagers = (int)Mathf.Pow(10, numberPower);
+                villagerList[indexVillager].SetActive(true);
+                villagerList[indexVillager].GetComponent<Villager>().valueVillagers = (int)Mathf.Pow(10, numberPower);
+                indexVillager++;
             }
 
             amount -= nbVillager * (int)Mathf.Pow(10, numberPower);
@@ -79,18 +87,16 @@ public class VillageManager : MonoBehaviour {
 
     public void SacrificeVillager()
     {
-        Destroy(selectedVillager);
+        selectedVillager.SetActive(false);
         panelInfoVillager.SetActive(false);
     }
 
     public void RemoveVillagers()
     {
-        foreach (GameObject go in villagerList)
+        for(int i = 0; i < villagerList.Count; i++)
         {
-            Destroy(go);
+            villagerList[i].SetActive(false);
         }
-
-        villagerList.Clear();
     }
 
 }
