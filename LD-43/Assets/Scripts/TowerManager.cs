@@ -12,7 +12,8 @@ public class TowerManager : MonoBehaviour
     public GameObject upgradeTowerPanel;
 
     private int layerTowerSpot;
-    private int layerTower;
+    [HideInInspector]
+    public int layerTower;
     private Dictionary<GameObject, GameObject> usedTowerSpots = new Dictionary<GameObject, GameObject>(); // TowerSpot => Tower logic
     public GameObject selectedSpot;
     public GameObject selectedTower;
@@ -92,7 +93,7 @@ public class TowerManager : MonoBehaviour
 
     public void DeleteSelectedTower()
     {
-        if(selectedTower != null)
+        if (selectedTower != null)
         {
             GameObject key = null;
             foreach (KeyValuePair<GameObject, GameObject> pair in usedTowerSpots)
@@ -103,8 +104,8 @@ public class TowerManager : MonoBehaviour
                     break;
                 }
             }
-            
-            if(key != null)
+
+            if (key != null)
             {
                 usedTowerSpots.Remove(key);
                 Destroy(selectedTower);
@@ -113,6 +114,41 @@ public class TowerManager : MonoBehaviour
             {
                 Debug.LogError("Couldn't find the spot that goes with the tower : " + selectedTower.name + ", in position : " + selectedTower.transform.position);
             }
+        }
+    }
+
+    private void GiveBuffAroundArrowTower(Tower arrowTower)
+    {
+        foreach (KeyValuePair<GameObject, GameObject> pair in usedTowerSpots)
+        {
+            GameObject tower = pair.Value;
+            if (tower != arrowTower.gameObject && Vector3.Distance(tower.transform.position, arrowTower.transform.position) < arrowTower.range / 2f)
+            {
+                tower.GetComponent<Tower>().isBuffedByArrowTower = true;
+            }
+        }
+    }
+
+    public void CheckTowerBuffs()
+    {
+        List<Tower> arrowTowers = new List<Tower>();
+
+        foreach (KeyValuePair<GameObject, GameObject> pair in usedTowerSpots)
+        {
+            GameObject tower = pair.Value;
+            Tower towerTower = tower.GetComponent<Tower>();
+            towerTower.isBuffedByArrowTower = false;
+            ArrowTower arrowTower = tower.GetComponent<ArrowTower>();
+            if(arrowTower != null && towerTower.level >= 5)
+            {
+                arrowTowers.Add(towerTower);
+                towerTower.isBuffedByArrowTower = true;
+            }
+        }
+
+        foreach(Tower t in arrowTowers)
+        {
+            GiveBuffAroundArrowTower(t);
         }
     }
 

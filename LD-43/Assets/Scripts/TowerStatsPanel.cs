@@ -31,7 +31,12 @@ public class TowerStatsPanel : MonoBehaviour {
 
         if (towerType == "IceTower")
         {
-            towerSpecials.text += "Slows enemies by 30%";
+            towerSpecials.text += "Slows enemies by 30%\n";
+            if (towerTower.level == 4)
+                towerSpecials.text += "<color=#00ffffff>Can use up to three beams on different targets</color>";
+            if(towerTower.level > 4)
+                towerSpecials.text += "Can use up to three beams on different targets";
+
         }
         else if (towerType == "CanonTower")
         {

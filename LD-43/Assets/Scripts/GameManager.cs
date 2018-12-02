@@ -242,6 +242,8 @@ public class GameManager : MonoBehaviour
         TowerManager._instance.AddUsedTowerSpot(newTower);
         SpendMoney(tower.price);
 
+        TowerManager._instance.CheckTowerBuffs();
+
         TowerManager._instance.towerShopPanel.SetActive(false);
     }
 
@@ -286,6 +288,8 @@ public class GameManager : MonoBehaviour
         SpendMoney(TowerManager._instance.selectedTowerTower.GetUpgradeCost());
         TowerManager._instance.selectedTowerTower.LevelUp();
 
+        TowerManager._instance.CheckTowerBuffs();
+
         TowerManager._instance.upgradeTowerPanel.GetComponent<TowerUpgradePanel>().UpdateValues();
     }
 
@@ -294,6 +298,8 @@ public class GameManager : MonoBehaviour
         money += TowerManager._instance.selectedTowerTower.GetSellValue();
         UpdateMoneyText();
         TowerManager._instance.DeleteSelectedTower();
+
+        TowerManager._instance.CheckTowerBuffs();
 
         TowerManager._instance.DisableUpgradeTowerPanel();
     }
