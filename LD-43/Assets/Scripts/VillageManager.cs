@@ -87,6 +87,12 @@ public class VillageManager : MonoBehaviour {
 
     public void SacrificeVillager()
     {
+        gm.villagerCount -= selectedVillager.GetComponent<Villager>().valueVillagers;
+        gm.UpdateVillagerText();
+
+        if (gm.villagerCount <= 0)
+            gm.LoseTheGame();
+
         selectedVillager.SetActive(false);
         panelInfoVillager.SetActive(false);
     }

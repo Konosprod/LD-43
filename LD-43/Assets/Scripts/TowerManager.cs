@@ -23,7 +23,6 @@ public class TowerManager : MonoBehaviour
         if (TowerManager._instance == null)
         {
             TowerManager._instance = this;
-            DontDestroyOnLoad(this);
         }
         else
             Destroy(this);

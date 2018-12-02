@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(this);
         }
         else
             Destroy(this);
@@ -251,8 +250,14 @@ public class GameManager : MonoBehaviour
         villageManager.GenerateVillagers();
         isInVillage = true;
         Vector3 pos = Camera.main.transform.position;
-        pos.z = 32f;
+
+        pos.z = 32.7f;
+        pos.y = 4.8f;
+        pos.x = -4.1f;
+
         Camera.main.transform.position = pos;
+        Camera.main.transform.localEulerAngles = new Vector3(30.5f, 90, 0);
+
         buttonVillage.GetComponentInChildren<Text>().text = "Back";
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoBack);
@@ -261,8 +266,14 @@ public class GameManager : MonoBehaviour
     private void GoBack()
     {
         Vector3 pos = Camera.main.transform.position;
+
         pos.z = -16f;
+        pos.y = 13.31f;
+        pos.x = -8.8f;
+
         Camera.main.transform.position = pos;
+        Camera.main.transform.localEulerAngles = new Vector3(50f, 90f, 0f);
+
         villageManager.RemoveVillagers();
         buttonVillage.GetComponentInChildren<Text>().text = "Village";
         buttonVillage.onClick.RemoveAllListeners();
@@ -295,7 +306,7 @@ public class GameManager : MonoBehaviour
             timeText.text = "Time : " + currentPauseTime.ToString("0") + " s";
     }
 
-    private void UpdateVillagerText()
+    public void UpdateVillagerText()
     {
         villagerText.text = "Villagers : " + villagerCount;
     }
@@ -310,8 +321,8 @@ public class GameManager : MonoBehaviour
         moneyText.text = "Money : " + money;
     }
 
-    private void LoseTheGame()
+    public void LoseTheGame()
     {
-        Debug.Log("RIP");
+        SceneManager.LoadScene("GameOver");
     }
 }
