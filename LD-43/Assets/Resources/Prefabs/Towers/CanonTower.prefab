@@ -262,6 +262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canonballPrefab: {fileID: 1303091294867988, guid: 619d860cf2daa5f419b436e9a4ca8a5a,
     type: 2}
+  canonballMegaPrefab: {fileID: 1793556044821738, guid: 48aa6e52d9184784d9e53ae20b163563,
+    type: 2}
   canon: {fileID: 1914333206187354}
 --- !u!114 &114559285496524078
 MonoBehaviour:
@@ -283,6 +285,7 @@ MonoBehaviour:
   damage: 50
   range: 8
   fireTime: 1.5
+  isBuffedByArrowTower: 0
   nextLevelDamage: 0
   nextLevelRange: 0
   nextLevelFireTime: 0

@@ -12,6 +12,9 @@ public class BalistaTower : MonoBehaviour {
 
     private float lastAttack = 0.0f;
 
+    private const float superCooldown = 15.0f;
+    private float currentCooldown = 15.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -28,7 +31,32 @@ public class BalistaTower : MonoBehaviour {
         {
             if (mobDetection.mobsInRange.Count > 0)
             {
-                if (Time.time > lastAttack + tower.fireTime) // Fire an arrow
+                currentCooldown -= Time.deltaTime;
+                if(tower.level >= 5 && currentCooldown < 0f && mobDetection.mobsInRange.Count >= 5)
+                {
+                    // Fire everything, literally
+                    currentCooldown = superCooldown;
+                    int shotsFired = 0;
+                    foreach(GameObject target in mobDetection.mobsInRange)
+                    {
+                        if (shotsFired >= 15)
+                            break;
+
+                        if(target != null)
+                        {
+                            Vector3 targetPos = new Vector3(target.transform.position.x, balista.transform.position.y, target.transform.position.z);
+                            balista.transform.LookAt(targetPos);
+
+                            GameObject balistaProj = Instantiate(balistaPrefab, balista.transform.position, Quaternion.identity);
+                            Projectile proj = balistaProj.GetComponent<Projectile>();
+                            proj.target = target;
+                            proj.damage = tower.damage;
+
+                            shotsFired++;
+                        }
+                    }
+                }
+                if (Time.time > lastAttack + (tower.isBuffedByArrowTower >= 1 ? tower.fireTime / (1 + 0.2f * tower.isBuffedByArrowTower) : tower.fireTime)) // Fire an arrow
                 {
                     GameObject target = mobDetection.GetTargetClosestToGoal();
                     lastAttack = Time.time;

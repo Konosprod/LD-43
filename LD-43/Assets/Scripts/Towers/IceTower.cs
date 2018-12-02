@@ -14,8 +14,6 @@ public class IceTower : MonoBehaviour
     private MobDetection mobDetection;
 
     private float lastAttack = 0.0f;
-    private float lastAttack2 = 0.0f;
-    private float lastAttack3 = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -33,7 +31,7 @@ public class IceTower : MonoBehaviour
         {
             if (mobDetection.mobsInRange.Count > 0)
             {
-                if (Time.time > lastAttack + tower.fireTime) // Deal damage
+                if (Time.time > lastAttack + (tower.isBuffedByArrowTower >= 1 ? tower.fireTime / (1 + 0.2f * tower.isBuffedByArrowTower) : tower.fireTime)) // Deal damage
                 {
                     if (tower.level < 5) // One beam
                     {
@@ -78,15 +76,11 @@ public class IceTower : MonoBehaviour
                                     }
                                     else if(trueTargets == 1)
                                     {
-                                        lastAttack2 = Time.time;
-
                                         iceBeam2.activated = true;
                                         iceBeam2.target = target;
                                     }
                                     else if (trueTargets == 2)
                                     {
-                                        lastAttack3 = Time.time;
-
                                         iceBeam3.activated = true;
                                         iceBeam3.target = target;
                                     }
