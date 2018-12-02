@@ -321,6 +321,7 @@ MonoBehaviour:
   maxHp: 160
   speed: 2.5
   healthBar: {fileID: 114198225937682706}
+  childMesh: {fileID: 1205186855346960}
   canDealDamage: 1
   hp: 20
 --- !u!114 &114558131691346020
