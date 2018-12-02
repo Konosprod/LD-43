@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,16 +19,18 @@ public class GameManager : MonoBehaviour
     public GameObject goal;
     public List<GameObject> spawners;
     public MobWave mobWave;
+    public VillageManager villageManager;
 
     [Header("UI")]
     public Text waveText;
     public Text villagerText;
     public Text moneyText;
     public Text timeText;
+    public Button buttonVillage;
 
 
     // Internal game logic
-    private int villagerCount = 50;
+    public int villagerCount = 450;
     private int wave = 1;
     private int money = 500;
     private const float pauseTime = 30f;
@@ -39,11 +42,16 @@ public class GameManager : MonoBehaviour
     private float currentSpawnDelay;
 
 
+    private bool isInVillage = false;
+
 
     void Awake()
     {
         if (_instance == null)
+        {
             _instance = this;
+            DontDestroyOnLoad(this);
+        }
         else
             Destroy(this);
     }
@@ -83,6 +91,7 @@ public class GameManager : MonoBehaviour
                 isPlaying = true;
                 currentWave = mobWave.GenerateWave(wave);
             }
+            buttonVillage.enabled = true;
         }
         else
         {
@@ -91,7 +100,7 @@ public class GameManager : MonoBehaviour
                 wave++;
                 isPlaying = false;
                 UpdateWaveText();
-                if(wave % 5 == 0 && wave <= 20)
+                if (wave % 5 == 0 && wave <= 20)
                 {
                     // Add a spawner to the available spawners
                     foreach(GameObject spawner in spawners)
@@ -103,6 +112,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
+
             }
             else
             {
@@ -219,6 +229,27 @@ public class GameManager : MonoBehaviour
         SpendMoney(tower.price);
 
         TowerManager._instance.towerShopPanel.SetActive(false);
+    }
+
+    public void GoToVillage()
+    {
+        villageManager.GenerateVillagers();
+        isInVillage = true;
+        Vector3 pos = Camera.main.transform.position;
+        pos.z = 32f;
+        Camera.main.transform.position = pos;
+        buttonVillage.GetComponentInChildren<Text>().text = "Back";
+        buttonVillage.onClick.AddListener(GoBack);
+    }
+
+    private void GoBack()
+    {
+        Vector3 pos = Camera.main.transform.position;
+        pos.z = -16f;
+        Camera.main.transform.position = pos;
+        buttonVillage.GetComponentInChildren<Text>().text = "Village";
+        buttonVillage.onClick.AddListener(GoToVillage);
+        isInVillage = false;
     }
 
     private void UpdateTimeText()
