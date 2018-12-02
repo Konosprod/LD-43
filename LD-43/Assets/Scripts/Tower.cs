@@ -55,16 +55,22 @@ public class Tower : MonoBehaviour
         if(level == 5)
         {
             // Mono Sayan 2D
+            float oldRange = range;
             damage *= 2f;
             range *= 1.2f;
             fireTime *= 0.8f;
+
+            previewCircleInst.transform.localScale += new Vector3(range - oldRange, 0f, range - oldRange);
         }
         else if(level == 10)
         {
             // Stereo Sayan 3D
+            float oldRange = range;
             damage *= 2f;
             range *= 1.2f;
             fireTime *= 0.8f;
+
+            previewCircleInst.transform.localScale += new Vector3(range - oldRange, 0f, range - oldRange);
         }
 
         // Increase the next level stats
