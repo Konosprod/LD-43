@@ -60,7 +60,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Add a first random spawner
-        mobWave.activeSpawners.Add(spawners[Random.Range(0, spawners.Count)]);
+        int randSpawn = Random.Range(0, spawners.Count);
+        mobWave.activeSpawners.Add(spawners[randSpawn]);
+
+        // Hide inactive spawners
+        foreach(GameObject spawn in spawners)
+        {
+            if (spawn != spawners[randSpawn])
+                spawn.SetActive(false);
+        }
 
         currentSpawnDelay = spawnDelay;
 
@@ -108,6 +116,7 @@ public class GameManager : MonoBehaviour
                         if(!mobWave.activeSpawners.Contains(spawner))
                         {
                             mobWave.activeSpawners.Add(spawner);
+                            spawner.SetActive(true);
                             break;
                         }
                     }
@@ -121,6 +130,7 @@ public class GameManager : MonoBehaviour
                     currentSpawnDelay -= Time.deltaTime;
                     if (currentSpawnDelay < 0f)
                     {
+                        GameObject removeSpawner = null;
                         foreach (GameObject spawner in currentWave.Keys)
                         {
                             if (currentWave[spawner].Count > 0)
@@ -135,8 +145,13 @@ public class GameManager : MonoBehaviour
                             }
                             else
                             {
-                                currentWave.Remove(spawner);
+                                removeSpawner = spawner;
                             }
+                        }
+
+                        if(removeSpawner != null)
+                        {
+                            currentWave.Remove(removeSpawner);
                         }
 
                         currentSpawnDelay = spawnDelay;

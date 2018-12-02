@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4368814549184472}
   - component: {fileID: 33429885728456412}
   - component: {fileID: 114534988368334818}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4026836494535008}
   - component: {fileID: 33727298482910544}
   - component: {fileID: 23354284410388874}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ice-tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4509101241442806}
   - component: {fileID: 114568926666158046}
   - component: {fileID: 114493558101378382}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: IceTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4089454310510560}
   - component: {fileID: 198368749881554318}
   - component: {fileID: 199314735930869560}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,9 +225,13 @@ MonoBehaviour:
   baseRange: 7
   baseFireTime: 0.2
   level: 1
+  damageIncreaseFactor: 1.3
   damage: 5
   range: 7
   fireTime: 0.2
+  nextLevelDamage: 0
+  nextLevelRange: 0
+  nextLevelFireTime: 0
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}

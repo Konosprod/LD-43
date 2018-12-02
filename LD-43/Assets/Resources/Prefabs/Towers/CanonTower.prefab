@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4937133379686898}
   - component: {fileID: 114559285496524078}
   - component: {fileID: 114468141177589790}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CanonTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4644590627376618}
   - component: {fileID: 33867907820416568}
   - component: {fileID: 23541590669074742}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: aoe-tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4552380783016630}
   - component: {fileID: 33161891757174392}
   - component: {fileID: 23191454795397792}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,9 +217,13 @@ MonoBehaviour:
   baseRange: 8
   baseFireTime: 1.5
   level: 1
+  damageIncreaseFactor: 1.3
   damage: 50
   range: 8
   fireTime: 1.5
+  nextLevelDamage: 0
+  nextLevelRange: 0
+  nextLevelFireTime: 0
   isPreviewMode: 1
   previewCirclePrefab: {fileID: 1295389092443532, guid: 6a2d0f99495b305408b0937d0a467982,
     type: 2}
