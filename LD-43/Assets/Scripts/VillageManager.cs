@@ -95,6 +95,8 @@ public class VillageManager : MonoBehaviour
             gm.villagerCount += villagerPerTime;
             gm.UpdateVillagerText();
             villagerTime = spawnRate;
+
+            UpdateVillagers();
         }
 
 
@@ -120,7 +122,7 @@ public class VillageManager : MonoBehaviour
         }
     }
 
-    public void GenerateVillagers()
+    /*public void GenerateVillagers()
     {
         int indexVillager = 0;
         int amount = gm.villagerCount;
@@ -142,6 +144,109 @@ public class VillageManager : MonoBehaviour
         }
 
         UpdateVillageInfo();
+    }*/
+
+    public void GenerateVillagers()
+    {
+        int points = gm.villagerCount;
+
+        if (points <= maxVillagers)
+        {
+            int valuePerVillager = 1;
+            for (int i = 0; i < points; i++)
+            {
+                villagerList[i].gameObject.SetActive(true);
+                villagerList[i].valueVillagers = valuePerVillager;
+                villagerList[i].UpdateValueText();
+            }
+        }
+        else
+        {
+            List<int> valuesPerVillager = new List<int>();
+            int randValueSum = 0;
+            for (int i = 0; i < maxVillagers; i++)
+            {
+                int randValue = Random.Range(1 + (points / 10), points);
+                valuesPerVillager.Add(randValue);
+                randValueSum += randValue;
+            }
+
+            int pointsCopy = points;
+            for (int i = 0; i < maxVillagers - 1; i++)
+            {
+                int trueValue = valuesPerVillager[i] * points / randValueSum;
+                if (trueValue > 0)
+                {
+                    villagerList[i].gameObject.SetActive(true);
+                    villagerList[i].valueVillagers = trueValue;
+                    villagerList[i].UpdateValueText();
+                    pointsCopy -= trueValue;
+                }
+            }
+
+            villagerList[maxVillagers - 1].gameObject.SetActive(true);
+            villagerList[maxVillagers - 1].valueVillagers = pointsCopy;
+            villagerList[maxVillagers - 1].UpdateValueText();
+        }
+
+        UpdateVillageInfo();
+    }
+
+    public void UpdateVillagers()
+    {
+        int points = gm.villagerCount;
+        int pointsInUse = 0;
+        int nbActiveVillagers = 0;
+
+        Villager inactiveVillager = null;
+
+        for (int i = 0; i < maxVillagers; i++)
+        {
+            if (villagerList[i].gameObject.activeSelf)
+            {
+                pointsInUse += villagerList[i].valueVillagers;
+                nbActiveVillagers++;
+            }
+            else
+            {
+                inactiveVillager = villagerList[i];
+            }
+        }
+
+        if (pointsInUse > points)
+        {
+            Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+        }
+        else if (pointsInUse < points) // If == there is nothing to do :D
+        {
+            if (nbActiveVillagers < maxVillagers)
+            {
+                // We can activate more villagers
+                if (inactiveVillager != null)
+                {
+                    inactiveVillager.gameObject.SetActive(true);
+                    inactiveVillager.valueVillagers = points - pointsInUse;
+                    inactiveVillager.UpdateValueText();
+                }
+                else
+                {
+                    Debug.LogError("O no " + villagerList.Count + " " + nbActiveVillagers + " " + maxVillagers);
+                }
+            }
+            else
+            {
+                // Distribute the points among the villagers
+                int nbWinners = Random.Range(1, maxVillagers);
+                int extraPointsPerWinner = (points - pointsInUse) / nbWinners;
+                for (int i = 0; i < nbWinners; i++)
+                {
+                    int winner = Random.Range(0, maxVillagers);
+                    villagerList[winner].valueVillagers += extraPointsPerWinner;
+                    villagerList[winner].UpdateValueText();
+                }
+            }
+        }
+
     }
 
     public void SacrificeVillager()
@@ -155,12 +260,31 @@ public class VillageManager : MonoBehaviour
         if (gm.villagerCount <= 0)
             gm.LoseTheGame();
 
-        selectedVillager.SetActive(false);
+        // Destroy the villager !
+        villagerList.Remove(selectedVillager.GetComponent<Villager>());
+        Destroy(selectedVillager);
+
+        // Generate a new one
+        Vector3 originPoint = spawner.gameObject.transform.position;
+        originPoint.x += Random.Range(-radiusSpawn, radiusSpawn);
+        originPoint.z += Random.Range(-radiusSpawn, radiusSpawn);
+
+        int draw = Random.Range(0, listPrefab.Count);
+        GameObject villager = Instantiate(listPrefab[draw], originPoint, Quaternion.identity);
+
+        villager.SetActive(false);
+        villagerList.Add(villager.GetComponent<Villager>());
+
+
+        UpdateVillagers();
+
         panelInfoVillager.SetActive(false);
     }
 
     public void RemoveVillagers()
     {
+        upgradePanel.SetActive(false);
+        panelInfoVillager.SetActive(false);
         for (int i = 0; i < villagerList.Count; i++)
         {
             villagerList[i].gameObject.SetActive(false);
@@ -177,12 +301,7 @@ public class VillageManager : MonoBehaviour
     public void ShowUpgradePanel()
     {
         int food = gm.food;
-        upgradePerPerfectWaveButton.GetComponentInChildren<Text>().text = "Per Perfect Cost : " + GetPpwUpgradeCost().ToString();
-        upgradePerWaveButton.GetComponentInChildren<Text>().text = "Per Wave Cost : " + GetPwUpgradeCost().ToString();
-        upgradeRateButton.GetComponentInChildren<Text>().text = "Rate Cost : " + GetRateUpgradeCost();
-
         UpdateUpgradeButtons();
-
         upgradePanel.SetActive(true);
     }
 
@@ -241,6 +360,10 @@ public class VillageManager : MonoBehaviour
     private void UpdateUpgradeButtons()
     {
         int food = gm.food;
+
+        upgradePerPerfectWaveButton.GetComponentInChildren<Text>().text = "Per Perfect Cost : " + GetPpwUpgradeCost().ToString();
+        upgradePerWaveButton.GetComponentInChildren<Text>().text = "Per Wave Cost : " + GetPwUpgradeCost().ToString();
+        upgradeRateButton.GetComponentInChildren<Text>().text = "Rate Cost : " + GetRateUpgradeCost();
 
         if (GetPpwUpgradeCost() > food)
         {

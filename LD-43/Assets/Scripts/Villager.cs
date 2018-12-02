@@ -12,6 +12,11 @@ public class Villager : MonoBehaviour {
 	void Start () {
         textValue.text = valueVillagers.ToString();
     }
+
+    public void UpdateValueText()
+    {
+        textValue.text = valueVillagers.ToString();
+    }
 	
 	// Update is called once per frame
 	void Update () {

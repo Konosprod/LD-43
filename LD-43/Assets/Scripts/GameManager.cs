@@ -114,6 +114,8 @@ public class GameManager : MonoBehaviour
 
                 villagerCount += villageManager.villagerPerWave;
 
+                villageManager.UpdateVillagers();
+
                 wave++;
                 isPlaying = false;
                 isPerfectWave = true;
@@ -228,6 +230,8 @@ public class GameManager : MonoBehaviour
             villagerCount = 0;
             LoseTheGame();
         }
+        
+        villageManager.UpdateVillagers();
 
         isPerfectWave = false;
 

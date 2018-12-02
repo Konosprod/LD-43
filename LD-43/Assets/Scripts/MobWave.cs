@@ -20,7 +20,7 @@ public class MobWave : MonoBehaviour {
             waveInfo.Add(spawner, new List<Mob>());
         }
 
-        int points = basePoints + (wave * 15 * (int)Mathf.Ceil(Mathf.Sqrt(wave)));
+        int points = basePoints + (wave * 15 * (int)Mathf.Floor(Mathf.Sqrt(wave)));
 
         Debug.Log("points : " + points);
 
