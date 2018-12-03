@@ -309,6 +309,7 @@ public class GameManager : MonoBehaviour
         buttonVillage.onClick.AddListener(GoBack);
 
         TowerManager._instance.DisableUpgradeTowerPanel();
+        TowerManager._instance.towerShopPanel.SetActive(false);
 
         panelVillageInfo.SetActive(true);
         minimap.SetActive(true);
