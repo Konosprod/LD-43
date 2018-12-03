@@ -14,6 +14,7 @@ public class Mob : MonoBehaviour
     public float maxHp = 20f;
     public float speed = 2f;
     public int foodLoot = 10;
+    public bool boss = false;
 
     [Header("UI")]
     public Image healthBar;
@@ -42,7 +43,7 @@ public class Mob : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        hp = maxHp * GameManager._instance.GetStatScaleForMobs();
+        hp = maxHp * GameManager._instance.GetStatScaleForMobs() * (boss ? GameManager._instance.GetStatScaleForMobs() : 1f);
         damage = (int)Mathf.Floor(damage * GameManager._instance.GetStatScaleForMobs());
         navMeshAgent = GetComponent<NavMeshAgent>();
 

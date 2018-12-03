@@ -8,6 +8,7 @@ public class MobWave : MonoBehaviour {
     public int basePoints = 10; // basePoints + (wave * 10) * ln(wave * 10) 
 
     public List<Mob> mobTypes = new List<Mob>();
+    public List<Mob> bossTypes = new List<Mob>();
 
     public List<GameObject> activeSpawners;
 
@@ -23,6 +24,11 @@ public class MobWave : MonoBehaviour {
         int points = basePoints + (wave * 15 * (int)Mathf.Floor(Mathf.Sqrt(wave)));
 
         // Debug.Log("points : " + points);
+
+        if(wave >= 15 && wave % 5 == 0)
+        {
+            waveInfo[activeSpawners[0]].Add(bossTypes[0]);
+        }
 
         while (points > 0)
         {

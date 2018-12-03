@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3219492, g: 0.48881114, b: 0.71709734, a: 1}
+  m_IndirectSpecularColor: {r: 0.321953, g: 0.48881346, b: 0.7170972, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26344,6 +26344,8 @@ MonoBehaviour:
   - {fileID: 114071040262320668, guid: 014fa901906edf245a36e68cd809fb7c, type: 2}
   - {fileID: 114873908269142360, guid: c3bfa548bc33f0d469ba0c741ec61213, type: 2}
   - {fileID: 114979546355121360, guid: 5d87d38e6925a7344a9d8903f6fdb035, type: 2}
+  bossTypes:
+  - {fileID: 114992615287516360, guid: c7f5ffb5fe48ff64992bc0932a329bb5, type: 2}
   activeSpawners: []
 --- !u!1 &1784816118
 GameObject:

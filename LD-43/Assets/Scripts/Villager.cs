@@ -23,14 +23,14 @@ public class Villager : MonoBehaviour
     public void UpdateValueText()
     {
         textValue.text = valueVillagers.ToString();
-        if (valueVillagers > 50)
-            textValue.color = Color.blue;
-        else if (valueVillagers > 200)
-            textValue.color = Color.magenta;
+        if (valueVillagers > 5000)
+            textValue.color = Color.yellow;
         else if (valueVillagers > 1000)
             textValue.color = Color.red;
-        else if (valueVillagers > 5000)
-            textValue.color = Color.yellow;
+        else if (valueVillagers > 200)
+            textValue.color = Color.magenta;
+        else if (valueVillagers > 50)
+            textValue.color = Color.blue;
         else
             textValue.color = Color.cyan;
     }
