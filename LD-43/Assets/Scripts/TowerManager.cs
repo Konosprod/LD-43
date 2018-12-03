@@ -49,6 +49,12 @@ public class TowerManager : MonoBehaviour
         {
             if (hit.transform.GetComponentInChildren<Tower>() != null)
             {
+                if (hoveredTower != null)
+                {
+                    hoveredTower.GetComponentInChildren<Tower>().isSelectedMode = false;
+                    hoveredTower = null;
+                }
+
                 hoveredTower = hit.transform.gameObject;
                 hoveredTower.GetComponentInChildren<Tower>().isSelectedMode = true;
             }
