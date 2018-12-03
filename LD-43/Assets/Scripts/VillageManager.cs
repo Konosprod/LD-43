@@ -193,6 +193,7 @@ public class VillageManager : MonoBehaviour
         }
 
         UpdateVillageInfo();
+        UpdateUpgradeButtons();
     }
 
     public void UpdateVillagers()
