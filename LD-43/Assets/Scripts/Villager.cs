@@ -31,6 +31,8 @@ public class Villager : MonoBehaviour
             textValue.color = Color.red;
         else if (valueVillagers > 5000)
             textValue.color = Color.yellow;
+        else
+            textValue.color = Color.cyan;
     }
 
     // Update is called once per frame
