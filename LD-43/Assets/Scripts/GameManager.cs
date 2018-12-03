@@ -279,11 +279,12 @@ public class GameManager : MonoBehaviour
         Vector3 pos = Camera.main.transform.position;
 
         pos.z = 32.7f;
-        pos.y = 4.8f;
-        pos.x = -4.1f;
+        pos.y = 6.14f;
+        pos.x = -3.31f;
 
         Camera.main.transform.position = pos;
         Camera.main.transform.localEulerAngles = new Vector3(30.5f, 90, 0);
+        Camera.main.orthographicSize = 6f;
 
         buttonVillage.GetComponentInChildren<Text>().text = "Back";
         buttonVillage.onClick.RemoveAllListeners();
@@ -296,12 +297,13 @@ public class GameManager : MonoBehaviour
     {
         Vector3 pos = Camera.main.transform.position;
 
-        pos.z = -16f;
-        pos.y = 13.31f;
-        pos.x = -8.8f;
+        pos.z = -12.97f;
+        pos.y = 12.23f;
+        pos.x = -8.82f;
 
         Camera.main.transform.position = pos;
-        Camera.main.transform.localEulerAngles = new Vector3(50f, 90f, 0f);
+        Camera.main.transform.localEulerAngles = new Vector3(40f, 90f, 0f);
+        Camera.main.orthographicSize = 8.9f;
 
         villageManager.RemoveVillagers();
         buttonVillage.GetComponentInChildren<Text>().text = "Village";
