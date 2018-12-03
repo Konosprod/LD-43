@@ -351,6 +351,11 @@ public class GameManager : MonoBehaviour
         TowerManager._instance.DisableUpgradeTowerPanel();
     }
 
+    public float GetStatScaleForMobs()
+    {
+        return 1f + (wave * wave / 1000f);
+    }
+
     private void UpdateTimeText()
     {
         if (isPlaying)

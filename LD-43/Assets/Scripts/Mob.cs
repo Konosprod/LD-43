@@ -42,7 +42,8 @@ public class Mob : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        hp = maxHp;
+        hp = maxHp * GameManager._instance.GetStatScaleForMobs();
+        damage = (int)Mathf.Floor(damage * GameManager._instance.GetStatScaleForMobs());
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         randFactorStart = Random.Range(-1f, 1f);
