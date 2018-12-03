@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4509101241442806}
   - component: {fileID: 114568926666158046}
   - component: {fileID: 114493558101378382}
+  - component: {fileID: 65448265495544316}
   m_Layer: 14
   m_Name: IceTower
   m_TagString: Untagged
@@ -281,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1473476771211118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.3, z: -3.217}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4026836494535008}
@@ -383,6 +384,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441340179725796}
   m_Mesh: {fileID: 4300000, guid: aee8450e37216534abc5b9db53fbaf50, type: 3}
+--- !u!65 &65448265495544316
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473476771211118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4, z: 1}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &114381846071446200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -444,6 +457,7 @@ MonoBehaviour:
   damage: 5
   range: 7
   fireTime: 0.2
+  isBuffedByArrowTower: 0
   nextLevelDamage: 0
   nextLevelRange: 0
   nextLevelFireTime: 0

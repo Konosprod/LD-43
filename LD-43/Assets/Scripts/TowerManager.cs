@@ -19,6 +19,8 @@ public class TowerManager : MonoBehaviour
     public GameObject selectedTower;
     public Tower selectedTowerTower;
 
+    private GameObject hoveredTower;
+
     void Awake()
     {
         if (TowerManager._instance == null)
@@ -39,6 +41,27 @@ public class TowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Show range when hovering the tower
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask(new string[] { "Tower" })))
+        {
+            if (hit.transform.GetComponentInChildren<Tower>() != null)
+            {
+                hoveredTower = hit.transform.gameObject;
+                hoveredTower.GetComponentInChildren<Tower>().isSelectedMode = true;
+            }
+        }
+        else
+        {
+            if (hoveredTower != null)
+            {
+                hoveredTower.GetComponentInChildren<Tower>().isSelectedMode = false;
+                hoveredTower = null;
+            }
+        }
+
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))

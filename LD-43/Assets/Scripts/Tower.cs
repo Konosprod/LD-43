@@ -40,6 +40,8 @@ public class Tower : MonoBehaviour
     public GameObject blueRing;
     public GameObject redRing;
 
+    private bool hovered;
+
 
     // Use this for initialization
     void Start()
@@ -137,5 +139,11 @@ public class Tower : MonoBehaviour
         {
             previewCircleMeshRend.enabled = isPreviewMode || isSelectedMode;
         }
+    }
+
+    public void ShowRange(bool show)
+    {
+        hovered = show;
+        previewCircleMeshRend.enabled = show;
     }
 }
