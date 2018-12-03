@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
                 villagerCount += villageManager.villagerPerWave;
 
                 villageManager.UpdateVillagers();
+                UpdateVillagerText();
 
                 wave++;
                 isPlaying = false;
