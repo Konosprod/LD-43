@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Text villagerText;
     public Text moneyText;
     public Text timeText;
+    public Image timerProgressBar;
     public Text foodText;
     public Button buttonVillage;
     public GameObject panelVillageInfo;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     private int money = 400;
     public int food = 10;
     private const float pauseTime = 30f;
-    private float currentPauseTime = 10f;
+    private float currentPauseTime = 30f;
     private bool isPlaying = false; // false = pause time between waves, true = wave
     private Dictionary<GameObject, List<Mob>> currentWave;
     private List<GameObject> currentWaveMobs = new List<GameObject>();
@@ -340,9 +341,15 @@ public class GameManager : MonoBehaviour
     private void UpdateTimeText()
     {
         if (isPlaying)
+        {
+            timerProgressBar.fillAmount = 0f;
             timeText.text = "Time : Playing";
+        }
         else
+        {
+            timerProgressBar.fillAmount = currentPauseTime / pauseTime;
             timeText.text = "Time : " + currentPauseTime.ToString("0") + " s";
+        }
     }
 
     public void UpdateVillagerText()
