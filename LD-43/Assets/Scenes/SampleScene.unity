@@ -14256,7 +14256,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Village
+  m_Text: Village (V)
 --- !u!222 &878495691
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -90,6 +90,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            if (isInVillage)
+                GoBack();
+            else
+                GoToVillage();
+        }
+
+
         if (!isPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -290,7 +299,7 @@ public class GameManager : MonoBehaviour
         Camera.main.transform.localEulerAngles = new Vector3(30.5f, 90, 0);
         Camera.main.orthographicSize = 6f;
 
-        buttonVillage.GetComponentInChildren<Text>().text = "Back";
+        buttonVillage.GetComponentInChildren<Text>().text = "Back (V)";
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoBack);
 
@@ -311,7 +320,7 @@ public class GameManager : MonoBehaviour
         Camera.main.orthographicSize = 8.9f;
 
         villageManager.RemoveVillagers();
-        buttonVillage.GetComponentInChildren<Text>().text = "Village";
+        buttonVillage.GetComponentInChildren<Text>().text = "Village (V)";
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoToVillage);
         isInVillage = false;
