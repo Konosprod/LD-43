@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
 
     public GameObject explosionObject;
 
+    private Vector3 saveTargetPos = Vector3.zero;
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +30,19 @@ public class Projectile : MonoBehaviour
     {
         if (target == null)
         {
+            if(explosive && saveTargetPos != Vector3.zero)
+            {
+                if (explosionObject != null)
+                {
+                    Instantiate(explosionObject, saveTargetPos, Quaternion.identity);
+                }
+                Collider[] cols = Physics.OverlapSphere(saveTargetPos, radius, 1 << GameManager._instance.mobLayer);
+                foreach (Collider col in cols)
+                {
+                    col.gameObject.GetComponent<Mob>().TakeDamage(damage);
+                }
+            }
+
             Destroy(gameObject);
         }
         else
@@ -59,6 +74,8 @@ public class Projectile : MonoBehaviour
                 positionTarget += new Vector3(0f, 0.1f, 0f);
                 transform.LookAt(positionTarget);
                 transform.position += (positionTarget - transform.position).normalized * speed * Time.deltaTime;
+
+                saveTargetPos = target.transform.position;
             }
         }
     }

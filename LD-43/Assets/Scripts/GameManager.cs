@@ -308,6 +308,8 @@ public class GameManager : MonoBehaviour
         buttonVillage.onClick.RemoveAllListeners();
         buttonVillage.onClick.AddListener(GoBack);
 
+        TowerManager._instance.DisableUpgradeTowerPanel();
+
         panelVillageInfo.SetActive(true);
         minimap.SetActive(true);
     }
