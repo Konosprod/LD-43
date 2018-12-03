@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c9f4b477dedd244970f2fce2986515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 75
+  price: 70
   baseDamage: 40
   baseRange: 15
   baseFireTime: 1
