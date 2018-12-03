@@ -7,6 +7,7 @@ public class DeathAnimation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        SoundManager._instance.PlaySFX(SFXType.Thunder);
         ParticleSystem ps = GetComponent<ParticleSystem>();
 
         if (ps != null)

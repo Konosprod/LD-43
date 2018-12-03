@@ -7,17 +7,12 @@ using UnityEngine.Audio;
 public enum SoundType
 {
     None,
-    LD41
+    BGM
 };
 
 public enum SFXType
 {
-    Punch,
-    Heal,
-    Shield,
-    Explosion,
-    HHK,
-    DDS
+    Thunder
 };
 
 public class SoundManager : MonoBehaviour

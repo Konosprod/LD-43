@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-
+        SoundManager._instance.PlayMusic(SoundType.BGM);
         startButton.onClick.AddListener(StartGame);
         optionsButton.onClick.AddListener(Options);
         quitButton.onClick.AddListener(QuitGame);
