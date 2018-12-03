@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Button buttonVillage;
     public GameObject panelVillageInfo;
     public GameObject minimap;
+    public GameObject skipText;
 
 
     // Internal game logic
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
                 // Start wave
                 currentPauseTime = pauseTime;
                 isPlaying = true;
+                skipText.SetActive(false);
                 currentWave = mobWave.GenerateWave(wave);
             }
             buttonVillage.enabled = true;
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
 
                 wave++;
                 isPlaying = false;
+                skipText.SetActive(true);
                 isPerfectWave = true;
                 UpdateWaveText();
                 if (wave % 5 == 0 && wave <= 20)
