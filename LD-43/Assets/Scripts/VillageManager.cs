@@ -354,7 +354,7 @@ public class VillageManager : MonoBehaviour
         gm.food -= GetPwUpgradeCost();
         gm.UpdateFoodText();
 
-        villagerPerWave += (int)Mathf.Floor(1.5f * baseVillagerPerWave);
+        villagerPerWave += (int)Mathf.Floor(1.5f * pwLevel * baseVillagerPerWave);
         pwLevel++;
 
         UpdateUpgradeButtons();
@@ -366,7 +366,7 @@ public class VillageManager : MonoBehaviour
         gm.food -= GetPpwUpgradeCost();
         gm.UpdateFoodText();
 
-        villagerPerPerfectWave += (int)Mathf.Floor(1.5f * baseVillagerPerPerfectWave);
+        villagerPerPerfectWave += (int)Mathf.Floor(1.5f * ppwLevel * baseVillagerPerPerfectWave);
         ppwLevel++;
 
         UpdateUpgradeButtons();
@@ -378,7 +378,7 @@ public class VillageManager : MonoBehaviour
         gm.food -= GetRateUpgradeCost();
         gm.UpdateFoodText();
 
-        villagerPerTime += (int)Mathf.Floor(1.5f * baseVillagerPerTime);
+        villagerPerTime += (int)Mathf.Floor(1.5f * rateLevel * baseVillagerPerTime);
         rateLevel++;
 
         UpdateUpgradeButtons();

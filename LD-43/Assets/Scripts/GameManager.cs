@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour
 
     public float GetStatScaleForMobs()
     {
-        return 1f + (wave * wave / 1000f);
+        return 1f + (wave * wave * Mathf.Sqrt(wave) / 1000f);
     }
 
     private void UpdateTimeText()

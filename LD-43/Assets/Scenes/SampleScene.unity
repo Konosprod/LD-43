@@ -13444,8 +13444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVillagers: 20
   radiusSpawn: 4
-  baseVillagerPerWave: 15
-  baseVillagerPerPerfectWave: 25
+  baseVillagerPerWave: 20
+  baseVillagerPerPerfectWave: 30
   baseVillagerPerTime: 10
   villagerPerWave: 15
   villagerPerPerfectWave: 25

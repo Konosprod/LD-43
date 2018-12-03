@@ -28,7 +28,7 @@ public class Mob : MonoBehaviour
     [HideInInspector]
     public bool canDealDamage = true;
 
-    [HideInInspector]
+
     public float hp = 20f;
 
     // Debuffs
