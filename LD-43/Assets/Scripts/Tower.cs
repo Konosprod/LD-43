@@ -67,7 +67,7 @@ public class Tower : MonoBehaviour
             blueRing.SetActive(true);
 
             float oldRange = range;
-            damage *= 2f;
+            //damage *= 2f;
             range *= 1.2f;
             fireTime *= 0.8f;
 
@@ -90,7 +90,7 @@ public class Tower : MonoBehaviour
         nextLevelDamage = damage * damageIncreaseFactor;
         if(level+1 == 5)
         {
-            nextLevelDamage *= 2f;
+            //nextLevelDamage *= 2f;
             nextLevelRange *= 1.2f;
             nextLevelFireTime *= 0.8f;
         }
