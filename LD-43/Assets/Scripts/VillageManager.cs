@@ -282,7 +282,7 @@ public class VillageManager : MonoBehaviour
 
         // Destroy the villager !
         villagerList.Remove(selectedVillager.GetComponent<Villager>());
-        Destroy(selectedVillager);
+        selectedVillager.GetComponent<Villager>().Execute();
 
         // Generate a new one
         Vector3 originPoint = spawner.gameObject.transform.position;

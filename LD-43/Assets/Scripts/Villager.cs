@@ -7,6 +7,8 @@ public class Villager : MonoBehaviour {
 
     public int valueVillagers = 10;
     public Text textValue;
+    public GameObject deathAnimation;
+    //public ParticleSystem ps;
 
 	// Use this for initialization
 	void Start () {
@@ -21,5 +23,10 @@ public class Villager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+    }
+
+    public void Execute()
+    {
+        deathAnimation.SetActive(true);
     }
 }
