@@ -230,6 +230,7 @@ public class GameManager : MonoBehaviour
             food += mob.GetComponent<Mob>().foodLoot;
 
         UpdateFoodText();
+        villageManager.UpdateUpgradeButtons();
         currentWaveMobs.Remove(mob);
     }
 

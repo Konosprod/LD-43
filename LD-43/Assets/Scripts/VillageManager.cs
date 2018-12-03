@@ -385,7 +385,7 @@ public class VillageManager : MonoBehaviour
         UpdateVillageInfo();
     }
 
-    private void UpdateUpgradeButtons()
+    public void UpdateUpgradeButtons()
     {
         int food = gm.food;
 
