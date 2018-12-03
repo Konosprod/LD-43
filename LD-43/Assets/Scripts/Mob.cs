@@ -44,6 +44,7 @@ public class Mob : MonoBehaviour
     void Start()
     {
         hp = maxHp * GameManager._instance.GetStatScaleForMobs() * (boss ? GameManager._instance.GetStatScaleForMobs() : 1f);
+        maxHp = hp;
         damage = (int)Mathf.Floor(damage * GameManager._instance.GetStatScaleForMobs());
         navMeshAgent = GetComponent<NavMeshAgent>();
 
