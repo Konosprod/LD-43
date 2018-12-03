@@ -26,6 +26,7 @@ public class DeathAnimation : MonoBehaviour {
 
     public void OnParticleSystemStopped()
     {
+        SoundManager._instance.PlaySFX(SFXType.Coindrop);
         Destroy(gameObject.transform.parent.gameObject);
     }
 }

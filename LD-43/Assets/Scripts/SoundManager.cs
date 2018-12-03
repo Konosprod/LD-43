@@ -12,7 +12,8 @@ public enum SoundType
 
 public enum SFXType
 {
-    Thunder
+    Thunder,
+    Coindrop
 };
 
 public class SoundManager : MonoBehaviour
