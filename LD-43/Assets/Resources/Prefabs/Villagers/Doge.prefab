@@ -284,8 +284,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.35, z: 0.55}
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Size: {x: 0.7, y: 0.7, z: 1}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!108 &108062926401913550
 Light:
   m_ObjectHideFlags: 1
@@ -477,6 +477,7 @@ MonoBehaviour:
   valueVillagers: 10
   textValue: {fileID: 114584320115865194}
   deathAnimation: {fileID: 1342379049612182}
+  isSacrified: 0
 --- !u!195 &195786811242907164
 NavMeshAgent:
   m_ObjectHideFlags: 1
