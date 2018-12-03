@@ -315,6 +315,7 @@ MonoBehaviour:
   damage: 5
   maxHp: 500
   speed: 1.8
+  foodLoot: 6
   healthBar: {fileID: 114046229775374438}
   childMesh: {fileID: 1040724734680158}
   canDealDamage: 1

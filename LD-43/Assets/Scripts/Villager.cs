@@ -10,6 +10,9 @@ public class Villager : MonoBehaviour {
     public GameObject deathAnimation;
     //public ParticleSystem ps;
 
+
+    public bool isSacrified = false;
+
 	// Use this for initialization
 	void Start () {
         textValue.text = valueVillagers.ToString();
