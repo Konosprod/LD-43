@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour
         {
             Mob m = mob.GetComponent<Mob>();
             food += m.foodLoot;
-            SettingsManager._instance.score += (int)Mathf.Floor(m.spawnCost * GetStatScaleForMobs());
+            SettingsManager._instance.gameSettings.Score += (int)Mathf.Floor(m.spawnCost * GetStatScaleForMobs());
             UpdateScoreText();
         }
 
@@ -407,7 +407,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScoreText()
     {
-        scoreText.text = "Score : " + SettingsManager._instance.score;
+        scoreText.text = "Score : " + SettingsManager._instance.gameSettings.Score;
     }
 
     public void LoseTheGame()
