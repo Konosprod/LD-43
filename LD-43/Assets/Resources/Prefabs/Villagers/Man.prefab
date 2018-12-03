@@ -72,6 +72,8 @@ GameObject:
   - component: {fileID: 4265533844964782}
   - component: {fileID: 114298197506753824}
   - component: {fileID: 65374194477705852}
+  - component: {fileID: 195968889234542590}
+  - component: {fileID: 114034366643968050}
   m_Layer: 0
   m_Name: Man
   m_TagString: Untagged
@@ -103,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757169162739760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9922612, y: 0.35973883, z: 37.423283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224000882047007018}
@@ -192,6 +194,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.5, z: 0.2}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &114034366643968050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757169162739760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcb4d20b32c55c4992947c150577f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114208379625341650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,6 +299,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b78e3169f66ccf4783ed125ca8b4802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &195968889234542590
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757169162739760}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.8
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222668662937266554
 CanvasRenderer:
   m_ObjectHideFlags: 1

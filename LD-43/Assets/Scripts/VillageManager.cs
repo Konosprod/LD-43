@@ -215,7 +215,27 @@ public class VillageManager : MonoBehaviour
 
         if (pointsInUse > points)
         {
-            Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+            // We must reduce those points ! We've taken a hit
+            int excess = pointsInUse - points;
+            while (excess > 0)
+            {
+                foreach (Villager villager in villagerList)
+                {
+                    if (villager.valueVillagers > excess)
+                    {
+                        villager.valueVillagers -= excess;
+                        villager.UpdateValueText();
+                        excess = 0;
+                    }
+                    else
+                    {
+                        // Make them die maybe
+                        excess -= villager.valueVillagers;
+                        villager.valueVillagers = 0;
+                        villager.gameObject.SetActive(false);
+                    }
+                }
+            }
         }
         else if (pointsInUse < points) // If == there is nothing to do :D
         {

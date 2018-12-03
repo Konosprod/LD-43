@@ -55,6 +55,8 @@ GameObject:
   - component: {fileID: 4971794902748642}
   - component: {fileID: 114528042066601948}
   - component: {fileID: 65713083932633996}
+  - component: {fileID: 195832023606109544}
+  - component: {fileID: 114700573298258530}
   m_Layer: 0
   m_Name: Woman
   m_TagString: Untagged
@@ -130,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1308808267991444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.854448, y: 0.35445392, z: 23.266453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4939748043579918}
@@ -275,6 +277,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &114700573298258530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308808267991444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcb4d20b32c55c4992947c150577f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114977650688089544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,6 +299,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b78e3169f66ccf4783ed125ca8b4802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &195832023606109544
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308808267991444}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.35
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.9
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222597128138293920
 CanvasRenderer:
   m_ObjectHideFlags: 1
