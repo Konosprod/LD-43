@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Text foodText;
     public Button buttonVillage;
     public GameObject panelVillageInfo;
+    public GameObject minimap;
 
 
     // Internal game logic
@@ -294,6 +295,7 @@ public class GameManager : MonoBehaviour
         buttonVillage.onClick.AddListener(GoBack);
 
         panelVillageInfo.SetActive(true);
+        minimap.SetActive(true);
     }
 
     private void GoBack()
@@ -315,6 +317,7 @@ public class GameManager : MonoBehaviour
         isInVillage = false;
 
         panelVillageInfo.SetActive(false);
+        minimap.SetActive(false);
     }
 
     public void UpgradeSelectedTower()
