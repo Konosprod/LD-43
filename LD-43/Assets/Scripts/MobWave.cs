@@ -22,7 +22,7 @@ public class MobWave : MonoBehaviour {
 
         int points = basePoints + (wave * 15 * (int)Mathf.Floor(Mathf.Sqrt(wave)));
 
-        Debug.Log("points : " + points);
+        // Debug.Log("points : " + points);
 
         while (points > 0)
         {
@@ -48,8 +48,6 @@ public class MobWave : MonoBehaviour {
                 points -= mob.spawnCost;
             }
         }
-
-        Debug.Log(waveInfo[activeSpawners[0]].Count);
 
         return waveInfo;
     }
