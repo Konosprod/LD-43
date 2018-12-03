@@ -14,6 +14,8 @@ public class SettingsManager : MonoBehaviour {
     public Slider sliderVolumeBGM;
     public Dropdown dropdownResolutions;
 
+    public int score;
+
     public GameSettings gameSettings;
 
     public static SettingsManager _instance;

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Text timeText;
     public Image timerProgressBar;
     public Text foodText;
+    public Text scoreText;
     public Button buttonVillage;
     public GameObject panelVillageInfo;
     public GameObject minimap;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
         UpdateMoneyText();
         UpdateTimeText();
         UpdateFoodText();
+        UpdateScoreText();
     }
 
     // Update is called once per frame
@@ -230,8 +232,13 @@ public class GameManager : MonoBehaviour
 
     public void IAmAMobAndIDied(GameObject mob, bool killed)
     {
-        if(killed)
-            food += mob.GetComponent<Mob>().foodLoot;
+        if (killed)
+        {
+            Mob m = mob.GetComponent<Mob>();
+            food += m.foodLoot;
+            SettingsManager._instance.score += (int)Mathf.Floor(m.spawnCost * GetStatScaleForMobs());
+            UpdateScoreText();
+        }
 
         UpdateFoodText();
         villageManager.UpdateUpgradeButtons();
@@ -396,6 +403,11 @@ public class GameManager : MonoBehaviour
     public void UpdateFoodText()
     {
         foodText.text = "Food : " + food;
+    }
+
+    public void UpdateScoreText()
+    {
+        scoreText.text = "Score : " + SettingsManager._instance.score;
     }
 
     public void LoseTheGame()
