@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCost: 50
-  minWave: 15
+  minWave: 20
   mobPrefab: {fileID: 1333158242211292}
   damage: 600
   maxHp: 11250
