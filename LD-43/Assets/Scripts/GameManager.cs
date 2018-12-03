@@ -213,9 +213,11 @@ public class GameManager : MonoBehaviour
         return res;
     }
 
-    public void IAmAMobAndIDied(GameObject mob)
+    public void IAmAMobAndIDied(GameObject mob, bool killed)
     {
-        food += mob.GetComponent<Mob>().foodLoot;
+        if(killed)
+            food += mob.GetComponent<Mob>().foodLoot;
+
         UpdateFoodText();
         currentWaveMobs.Remove(mob);
     }

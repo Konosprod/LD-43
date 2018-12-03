@@ -320,7 +320,6 @@ public class VillageManager : MonoBehaviour
 
     public void ShowUpgradePanel()
     {
-        int food = gm.food;
         UpdateUpgradeButtons();
         upgradePanel.SetActive(true);
     }

@@ -80,7 +80,7 @@ public class Mob : MonoBehaviour
         {
             hp = 0f;
             canDealDamage = false;
-            GameManager._instance.IAmAMobAndIDied(gameObject);
+            GameManager._instance.IAmAMobAndIDied(gameObject, true);
             Destroy(this.gameObject);
         }
 
@@ -105,7 +105,7 @@ public class Mob : MonoBehaviour
         {
             GameManager._instance.TakeDamage(damage);
             canDealDamage = false;
-            GameManager._instance.IAmAMobAndIDied(gameObject);
+            GameManager._instance.IAmAMobAndIDied(gameObject, false);
             Destroy(this.gameObject);
         }
     }
